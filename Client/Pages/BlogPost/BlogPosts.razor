@@ -1,0 +1,46 @@
+﻿@page "/AllPost"
+
+<h3>BlogPosts</h3>
+
+<div>
+
+
+    @if (blogPostDTOList == null)
+    {
+        <h1>loading . . .  </h1>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temp. (C)</th>
+                    <th>Temp. (F)</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var forecast in blogPostDTOList)
+                {
+                    <tr>
+                        <td>@forecast.Title</td>
+                        <td>@forecast.Id</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+
+@code {
+
+    protected List<BlogPostDTO> blogPostDTOList = new List<BlogPostDTO>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        blogPostDTOList = await httpRequestHandler
+            .GetAsHttpAsync<List<BlogPostDTO>>("BlogPost/GetAllBlogPost");
+    }
+}

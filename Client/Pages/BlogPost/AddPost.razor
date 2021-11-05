@@ -1,0 +1,82 @@
+﻿@page "/addBlogPost"
+
+<style>
+    h1 {
+        font-family: IArchitectsDaughter-Regular;
+    }
+
+    label {
+        font-family: IGluten-Black;
+        text-align: center;
+    }
+</style>
+
+<div class="IBGCrosscheckPattern IBorder1">
+    <div class="container">
+        <div class="text-body text-center">
+            <h1> Add Blog Post </h1>
+        </div>
+        <EditForm Model=BlogPost OnValidSubmit="AddBlogPost">
+            <div>
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row m-2">
+                            <label class="IBGCaqua IW4 IBorder1" for="Context"> Blog Post Context </label>
+                            <InputTextArea @bind-Value="BlogPost.PostContext" id="Context" rows="25" class="IBorder1 form-control IBGCpeachpuff" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row m-2">
+                            <label class="IBGCaqua IW4 IBorder1" for="Title">Blog Post Title</label>
+                            <InputText @bind-Value="BlogPost.Title" id="Title" class="IBorder1 form-control IBGCpeachpuff" />
+                        </div>
+                        <div class="row m-2">
+                            <label class="IBGCaqua IW4 IBorder1" for="Summary"> Blog Post Summary </label>
+                            <InputText @bind-Value="BlogPost.Summary" id="Summary" class="IBorder1 form-control IBGCpeachpuff" />
+                        </div>
+                        <div class="row m-2">
+                            <label class="IBGCaqua IW4 IBorder1" for="ImageUrl"> Blog Post Image Url </label>
+                            <InputText @bind-Value="BlogPost.PostImageUrl" id="ImageUrl" class="IBorder1 form-control IBGCpeachpuff" />
+                        </div>
+                        <div class="row m-2">
+                            <label class="IBGCaqua IW4 IBorder1" for="VideoUrl"> Blog Post Video Url </label>
+                            <InputText @bind-Value="BlogPost.PostVideoUrl" id="VideoUrl" class="IBorder1 form-control IBGCpeachpuff" />
+                        </div>
+                        <div class="row m-2">
+                            <label class="IBGCaqua IW4 IBorder1" for="FileUrl"> Blog Post Attached File Url </label>
+                            <InputText @bind-Value="BlogPost.PostAttachedFileUrl" id="FileUrl" class="IBorder1 form-control IBGCpeachpuff" />
+                        </div>
+                        <div class="row m-2">
+                            <label class="IBGCaqua IW4 IBorder1" for="LinkUrl"> Blog Post Attached Link Url </label>
+                            <InputText @bind-Value="BlogPost.PostAttachedLinkUrl" id="LinkUrl" class="IBorder1 form-control IBGCpeachpuff" />
+                        </div>
+                        <div class="mt-5 float-right">
+                            <button type="submit" value="Submit" class="btn btn-primary">
+                                Add Post
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+
+    public BlogPostDTO BlogPost = new BlogPostDTO()
+    {
+        Author = "illegible"
+    };
+
+    protected async Task AddBlogPost()
+    {
+
+        await httpRequestHandler
+            .PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
+
+    }
+
+}
