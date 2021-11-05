@@ -1,0 +1,16 @@
+
+"mapster is a new and powerFull and fast mapping library"
+
+i see some test's
+
+and do some test's to see is that true?!
+
+the answer was "yes it's faster and more easy to use and 
+	let you have more Personalization on mapping object's"
+
+for more information go to  mapster gitHub: "https://github.com/MapsterMapper/Mapster"
+
+if you are intersted like me  so clone the project and see how it's work
+
+(also you can go this path "illegible/DocsAndBeyond/BEYOND/Mapster" in this project ,
+	Read readMe.txt to access next step of docs of mapster )

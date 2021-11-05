@@ -1,0 +1,31 @@
+
+hello friend!!
+
+i'm illegible 
+
+an open source blazor web assembly project
+
+if you wanna read my source code so please read my docs first
+
+else if you wanna write new lines on my code 
+
+so please read my docs twice,
+
+&& add docs,
+
+&& comments ,
+
+&& unit Tests for your codes
+
+if you have any idea or Criticism 
+
+please!!,
+
+I say it again , please share with me 
+
+//i will tell you how to do that
+
+thank's friend;
+
+
+

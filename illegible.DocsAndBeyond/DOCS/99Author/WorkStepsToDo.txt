@@ -1,0 +1,56 @@
+I Wanna Build An Dynamic And OfCurse Secure Blog For Programmers with Chat Ability
+
+works steps:
+
+0- Add Required Nugets ------>>> done
+1- define dbContext  -------->>> done
+2- connect to sql ------>>> done
+3- reflection  for entities ---->>> done  
+4- config and Use Microsoft.Extensions.Logging.Debug
+5- define personal css for background and element size --->>>done
+6- define personal font css and add persian and english fonts ---> done(just two english font added if you need more add more!!) 
+7- add post Table  ---->>done (this is just for now)
+**** Use GodDamn OWASP And More *****
+8- Blazor WebAssembly Registration
+install and build identity -->> done
+
+9- add jwt configs for identity with jwtbrear -->done
+10- Implementation identity on server --->done
+11-Blazor WebAssembly Authentication 
+and its StateProvider 
+(I'm gonna build that custom Because 
+there are so many options when
+it comes to client-side apps 
+there is no way to design 
+a default class that 
+would work for everyone.) --->>done
+12- clean up identity shiits --->>done
+13- build BlogPost entiy (clean testPost)-->>>done
+14- add services for blog post tables(config manually for now (i mean with out reflection)) -->>done
+15- use mapster ==>>> done
+16- add addPOstPage and do api basic actions to add post ==> done
+19- define jwe property values in kernel layer == > done
+20- add a post ==> done
+21- ok make DI simple => done
+22- build HttpRequestHandler Service  ==> done
+23- post Content add =>> done
+24- build unit tests
+
+
+
+**** To Do Later *****
+-- build customNotFound Component More Creative !!!
+---build first page
+--- ok maybe test jws or make it dynamic for diffrent users
+----define header and footer maybe 
+--- build sidebar uesr friendly
+---- build loading page more creative please!
+--- add files for post(local img ,local attachment)
+--- refactor login and register 
+--- build with autoFac again with more flexibity
+
+**** Just Tested and Cleaned *****
+-use wp or some thing like that for blogiing
+(ok it's gonna build in my next project with combining php and c#)
+- reflection for services ==> done and cleaned to be simple
+- leran and use atuoFac ==> done and cleaned to be simple for now

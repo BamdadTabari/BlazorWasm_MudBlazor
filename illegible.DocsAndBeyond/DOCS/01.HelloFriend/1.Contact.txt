@@ -1,0 +1,35 @@
+ 
+ -ok for my first real document to intrduce my self more
+
+ -as you kwno im illegible 
+ 
+ -written by a open source lover called Mohammad Javad Tabari
+
+ -you can call with him in this way's
+1. mohammadJavadtabari1024@outlook.com
+2. illegible.exe@outlook.com
+
+ - so let me explain you how's gonna talk to you :
+ 1. follow my doc's first;
+	i explain as more as possible;
+	step by step;
+	and categorized;
+ 
+ 2. just read comments i write above code's;
+	my first writer(who i mentioned his name above);
+	was in love with documention's and writing comment's;
+	so now i'm fall in love too;
+	Therefore ;
+	if(you gonna write on my code)
+	{
+	   //makeLove => turn on commenting
+	   bool makeLove = true;
+
+	   //makeWar => turn off commenting
+	   bool makeWar = false;
+	}
+
+	I'm not a Hippie but i mean :
+	"make love not war"
+
+	now read next part please;
