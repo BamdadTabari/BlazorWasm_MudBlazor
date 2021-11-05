@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\illegible.Shared.csproj" />
+    <ProjectReference Include="..\5_Shared\illegible.Shared.csproj" />
   </ItemGroup>
 
 </Project>

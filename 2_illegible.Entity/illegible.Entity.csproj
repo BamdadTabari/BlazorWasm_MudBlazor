@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\illegible.Kernel\illegible.Kernel.csproj" />
+    <ProjectReference Include="..\1_illegible.Kernel\illegible.Kernel.csproj" />
   </ItemGroup>
 
 </Project>

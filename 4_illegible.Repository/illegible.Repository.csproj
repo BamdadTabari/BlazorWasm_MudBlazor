@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\illegible.DataStructure\illegible.DataStructure.csproj" />
+    <ProjectReference Include="..\3_illegible.DataStructure\illegible.DataStructure.csproj" />
   </ItemGroup>
 
 </Project>

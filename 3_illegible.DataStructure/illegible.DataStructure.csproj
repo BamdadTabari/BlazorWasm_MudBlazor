@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\illegible.Entity\illegible.Entity.csproj" />
+    <ProjectReference Include="..\2_illegible.Entity\illegible.Entity.csproj" />
   </ItemGroup>
 
 </Project>
