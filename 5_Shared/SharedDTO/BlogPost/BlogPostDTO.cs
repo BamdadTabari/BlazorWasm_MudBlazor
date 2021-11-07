@@ -20,15 +20,19 @@ namespace illegible.Shared.SharedDTO.BlogPost
         [Required]
         
         public string PostContext { get; set; }
-        
+
+        [Url]
         public string PostImageUrl { get; set; }
-        
+
+        [Url]
         public string PostVideoUrl { get; set; }
-        
+
+        [Url]
         public string PostAttachedFileUrl { get; set; }
 
         //public AttachedLinkType AttachedLinkTypeEnum { get; set; }
-        
+
+        [Url]
         public string PostAttachedLinkUrl { get; set; }
     }
 }

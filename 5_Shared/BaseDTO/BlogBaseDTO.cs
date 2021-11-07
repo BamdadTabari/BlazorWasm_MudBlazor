@@ -7,14 +7,14 @@ namespace illegible.Shared.BaseDTO
         public T Id { get; set; }
 
         // last changes datetime
-        // map this shiit in your every create and update
-        // (keep calm it's done automaticly here)
+        // map this shit in your every create and update
+        // (keep calm it's done here)
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
     }
 
-    // this is defualt for id 
+    // this is default for id 
     //you see default id type is long
-    // but if need to have diffrent type
+    // but if need to have different type
     // just depend yor entity directly to ----> BaseEntity<T>
     public abstract class BlogBaseDTO : BlogBaseDTO<long>
     {

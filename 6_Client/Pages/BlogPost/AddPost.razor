@@ -19,7 +19,9 @@
         <EditForm Model=BlogPost OnValidSubmit="AddBlogPost">
             <div>
                 <DataAnnotationsValidator />
-                <ValidationSummary />
+                <div class="IBGCkhaki">
+                    <ValidationSummary />
+                </div>
                 <div class="row">
                     <div class="col-6">
                         <div class="row m-2">
@@ -34,7 +36,7 @@
                         </div>
                         <div class="row m-2">
                             <label class="IBGCaqua IW4 IBorder1" for="Summary"> Blog Post Summary </label>
-                            <InputText @bind-Value="BlogPost.Summary" id="Summary" class="IBorder1 form-control IBGCpeachpuff" />
+                            <InputText @bind-Value="BlogPost.Summary"  id="Summary" class="IBorder1 form-control IBGCpeachpuff" />
                         </div>
                         <div class="row m-2">
                             <label class="IBGCaqua IW4 IBorder1" for="ImageUrl"> Blog Post Image Url </label>

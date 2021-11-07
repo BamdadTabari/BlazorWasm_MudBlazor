@@ -2,7 +2,7 @@
 
 @font-face { font-family: ArchitectsDaughter-Regular; src: url('../../css/Fonts/En/Architects_Daughter/ArchitectsDaughter-Regular.ttf') format('truetype'); }  .IFArchitectsDaughter-Regular { font-family: ArchitectsDaughter-Regular; }  @font-face { font-family: Gluten-Black; src: url('../../css/Fonts/En/Gluten/Gluten-VariableFont_wght.ttf') format('truetype'); }  .IFGluten-Black { font-family: Gluten-Black; }
 
-.IBGCpeachpuff {background-color: peachpuff}.IBGCcadetblue {background-color: cadetblue} .IBGCBlack {background-color: black;} .IBGCred { background-color: red; }  .IBGCaquamarine { background-color: aquamarine; }  .IBGCaqua { background-color: aqua; }  .IBGCburlywood { background-color: burlywood; }
+.IBGCkhaki{background-color: khaki }.IBGCorange{background-color: orange}.IBGCpeachpuff {background-color: peachpuff}.IBGCcadetblue {background-color: cadetblue} .IBGCBlack {background-color: black;} .IBGCred { background-color: red; }  .IBGCaquamarine { background-color: aquamarine; }  .IBGCaqua { background-color: aqua; }  .IBGCburlywood { background-color: burlywood; }
 
 .IBGOpacity90 { opacity: 90; } .IBGOpacity80 { opacity: 80; } .IBGOpacity70 { opacity: 70; } .IBGOpacity60 { opacity: 60; } .IBGOpacity50 { opacity: 50; } .IBGOpacity40 { opacity: 40; } .IBGOpacity30 { opacity: 30; } .IBGOpacity20 { opacity: 20; } .IBGOpacity10 { opacity: 10; } 
 
