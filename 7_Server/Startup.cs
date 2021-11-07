@@ -30,7 +30,7 @@ namespace illegible.Server
             services.AddDbContextsService(Configuration);
 
             // this method defined in startUpCleaner
-            // and use to Define AditionalServices
+            // and use to Define Additional Services
             services.AddConventionalService();
             
             services.AddControllersWithViews();
@@ -57,9 +57,20 @@ namespace illegible.Server
             // use elmah.io for error tracking
             app.UseElmahIo();
 
+            // nWebSec Configs 
+            //Registered before static files to always set header
+            app.UseXContentTypeOptions();
+            app.UseReferrerPolicy(opts => opts.NoReferrer());
+
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
+
+            // nWebSec Configs
+            //Registered after static files, to set headers for dynamic content.
+            app.UseHsts(hsts => hsts.MaxAge(365)); // for https 
+            app.UseXfo(xfo => xfo.Deny());
+            app.UseRedirectValidation(); //Register this earlier if there's middleware that might redirect.
 
             app.UseRouting();
 
