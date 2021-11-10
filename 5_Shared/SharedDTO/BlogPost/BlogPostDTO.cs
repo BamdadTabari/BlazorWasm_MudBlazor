@@ -10,15 +10,14 @@ namespace illegible.Shared.SharedDTO.BlogPost
     public class BlogPostDTO : BlogBaseDTO
     {
         [Required]
-        
         public string Title { get; set; }
         public string Author { get; set; }
         [Required]
         
         public string Summary { get; set; }
         public DateTime WriteTime { get; set; }
-        [Required]
         
+        [Required]
         public string PostContext { get; set; }
 
         [Url]
@@ -30,9 +29,10 @@ namespace illegible.Shared.SharedDTO.BlogPost
         [Url]
         public string PostAttachedFileUrl { get; set; }
 
-        //public AttachedLinkType AttachedLinkTypeEnum { get; set; }
+        public AttachedLinkType AttachedLinkTypeEnum { get; set; }
 
         [Url]
         public string PostAttachedLinkUrl { get; set; }
+        public string PostAttachedLinkUrlSubject { get; set; }
     }
 }
