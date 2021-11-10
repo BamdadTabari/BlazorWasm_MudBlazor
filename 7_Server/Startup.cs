@@ -60,8 +60,20 @@ namespace illegible.Server
 
             //Registered before static files to always set header
             #region NWebSec Configs Part 1
+            // Content Security Policy
+            // tip: read this book => https://www.w3.org/TR/2021/WD-CSP3-20210629/ to understanding what is csp
+            // tip : or you just can read a simple article => https://www.html5rocks.com/en/tutorials/security/content-security-policy/
+            app.UseCsp(options => options
+                    // default source for any content type set to self
+                    // that mean's the web site is a default member of csp white list for it self
+                    .DefaultSources(s => s.Self())
 
-            app.UseXContentTypeOptions();
+                    // if any sources are http this method upgrade them to https
+                    // just read this : https://docs.nwebsec.com/en/latest/nwebsec/Upgrade-insecure-requests.html
+                    .UpgradeInsecureRequests()
+            );
+
+
             // tip : Referer header: privacy and security concerns : https://developer.mozilla.org/en-US/docs/Web/Security/Referer_header:_privacy_and_security_concerns#the_referrer_problem
             app.UseReferrerPolicy(opts =>
                 //Send the origin, path, and querystring in Referer when the protocol security level stays the same
@@ -79,7 +91,6 @@ namespace illegible.Server
 
             //Registered after static files, to set headers for dynamic content.
             #region NWebSec Configs part 2
-
            
             //Register this earlier if there's middleware that might redirect.
             // this baby validate redirects => sample post for understanding invalid redirection: https://www.troyhunt.com/owasp-top-10-for-net-developers-part-10/
