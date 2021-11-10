@@ -125,7 +125,8 @@ namespace illegible.Server
                 // this method allows redirections to https
                 opts.AllowSameHostRedirectsToHttps();
                 // this method create a white list for valid sites to redirect 
-                opts.AllowedDestinations("http://www.GitHub.com/", "https://www.google.com/");
+                opts.AllowedDestinations
+                    ("http://www.GitHub.com/", "https://gitlab.com/", "https://www.youtube.com/", "https://stackoverflow.com/");
             });
 
             #endregion

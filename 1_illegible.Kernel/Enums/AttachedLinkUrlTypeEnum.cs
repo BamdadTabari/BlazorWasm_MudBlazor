@@ -10,25 +10,20 @@ namespace illegible.Kernel.Enums
     // to "Be Safe" Against "CSRF" And "Social Engineering" Attacks
     public enum AttachedLinkType
     {
+
+        [Display(Name = "OtherSites")]
+        OtherSites = 0,
+
         [Display(Name = "GitHub")]
         GitHub = 1 ,
 
         [Display(Name = "GitLab")]
         GitLab = 2 ,
 
-        [Display(Name = "AzureGit")]
-        AzureGit = 3 ,
-
         [Display(Name = "YouTube")]
-        YouTube = 4 ,
+        YouTube = 3 ,
 
         [Display(Name = "StackOverFlow")]
-        StackOverFlow = 5,
-
-        [Display(Name = "Aparat")]
-        Aparat = 6 ,
-
-        [Display(Name = "Other")]
-        Other = 7 
+        StackOverFlow = 4,
     }
 }
