@@ -52,10 +52,16 @@ namespace illegible.Server
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts(hsts => hsts.MaxAge(365)); // for https 
+                // nWebSec Configs 
+                // force browser to use https
+                // tip : method docs:https://docs.nwebsec.com/en/latest/nwebsec/Configuring-hsts.html
+                app.UseHsts(hsts => hsts
+                    // maxAge is a TimeSpan
+                    .MaxAge(365)); // https protocol between client and server
+                    //shared secure key between them is valid for 365 day
             }
 
-            // use elmah.io for error tracking
+            // use elmah.io for error tracking // also you can use sentry.io it has more free options
             app.UseElmahIo();
 
             //Registered before static files to always set header
@@ -104,7 +110,11 @@ namespace illegible.Server
 
             //Registered after static files, to set headers for dynamic content.
             #region NWebSec Configs part 2
-           
+
+            // cross site scripting protection 
+            // tip : what is xss? => https://portswigger.net/web-security/cross-site-scripting
+            app.UseXXssProtection(options => options.EnabledWithBlockMode());
+
             //Register this earlier if there's middleware that might redirect.
             // this baby validate redirects => sample post for understanding invalid redirection: https://www.troyhunt.com/owasp-top-10-for-net-developers-part-10/
             app.UseRedirectValidation(opts =>
