@@ -1,0 +1,28 @@
+// hello friend
+
+security is my hubby as you know
+
+an important concern's in website security is http request's
+
+with https (god bless Tls) many of vulnerabilities of http is Resolved
+
+but ! there is no 100 percent security in based of goddes "Zero Trust" Concept.
+
+ok , the main subject is nwebSec library 
+
+an open source security library for .net 
+
+using this library in .net Core is easier as you think 
+
+for example configurations go to path mentioned blew in project
+
+"7.server/illlegible.Server/Starup.cs " 
+
+and there in Configure method of startup
+you will see nwebsec all configs with comments
+and tips and attached links for more detail.
+
+thats it ;
+
+nWebSec git hub repository:  https://github.com/NWebsec
+nWebSec Docs: https://docs.nwebsec.com/ 
