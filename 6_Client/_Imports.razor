@@ -17,7 +17,7 @@
 @*   *********   nugets   *********     *@
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-
+@*  ui library *@ @using Radzen @using Radzen.Blazor
 
 @*   *********   Personal Internal DTO   *********     *@
 @using illegible.Shared.SharedDTO.BlogPost
@@ -25,8 +25,7 @@
 
 @*   *********   Personal Internal SERVICES   *********     *@
 @using illegible.Shared.SharedServices.IService
-@inject IHttpRequestHandlerService httpRequestHandler;
-
+@inject IHttpRequestHandlerService _httpRequestHandler;
 @*   *********   Personal Internal COMPONENTS   *********     *@
 @using illegible.Client.Pages.IdntityPages
 @using illegible.Client.Pages.BlogPost

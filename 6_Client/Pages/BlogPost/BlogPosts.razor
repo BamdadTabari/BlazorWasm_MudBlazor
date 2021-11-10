@@ -40,7 +40,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        blogPostDTOList = await httpRequestHandler
+        blogPostDTOList = await _httpRequestHandler
             .GetAsHttpAsync<List<BlogPostDTO>>("BlogPost/GetAllBlogPost");
     }
+
 }

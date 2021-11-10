@@ -80,7 +80,7 @@
     protected async Task AddBlogPost()
     {
 
-        await httpRequestHandler
+        await _httpRequestHandler
             .PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
 
     }
