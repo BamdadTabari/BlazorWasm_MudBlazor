@@ -15,17 +15,15 @@ namespace illegible.Entity.BlogEntity.Post
         public string PostContext { get; set; }
         public string PostImageUrl { get; set; }
         public string PostVideoUrl { get; set; }
-        public string PostAttachedFileUrl { get; set; }
-
-        //public AttachedLinkType AttachedLinkTypeEnum { get; set; }
+        public AttachedLinkType AttachedLinkTypeEnum { get; set; }
         public string PostAttachedLinkUrl { get; set; }
-
+        public string PostAttachedLinkUrlSubject { get; set; }
 
         //relation
         //public List<BlogPostComment> BlogPostCommentList { get; set; }
     }
 
-    public class BlogPostCnfiguration : IEntityTypeConfiguration<BlogPost>
+    public class BlogPostConfiguration : IEntityTypeConfiguration<BlogPost>
     {
         public void Configure(EntityTypeBuilder<BlogPost> builder)
         {
@@ -41,6 +39,10 @@ namespace illegible.Entity.BlogEntity.Post
 
             builder.Property(b => b.WriteTime)
               .IsRequired();
+
+            builder.Property(b => b.PostContext)
+                .IsRequired();
+
             #endregion
         }
     }
