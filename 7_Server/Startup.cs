@@ -71,6 +71,19 @@ namespace illegible.Server
                     // if any sources are http this method upgrade them to https
                     // just read this : https://docs.nwebsec.com/en/latest/nwebsec/Upgrade-insecure-requests.html
                     .UpgradeInsecureRequests()
+
+                    // this method block mix content as you see 
+                    // it help's to avoid from injection attacks
+                    .BlockAllMixedContent()
+
+                    // and here we go => set dribble as image source white list member
+                    .ImageSources(s =>
+                        s.Self().CustomSources("https://localhost:44396/_framework/blazor.boot.json", "https://dribbble.com/"))
+
+                    // set media source white list
+                    .MediaSources(s =>
+                        s.Self().CustomSources("https://www.youtube.com/",
+                            "https://www.aparat.com/"))
             );
 
 
