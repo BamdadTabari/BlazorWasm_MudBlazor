@@ -1,8 +1,4 @@
-﻿using illegible.Repository.IRepository.BlogPostTablesIRepository;
-using illegible.Repository.Repository.BlogPostRepository;
-using illegible.Server.StartupCleaner;
-using illegible.Shared.SharedServices.IService;
-using illegible.Shared.SharedServices.Service;
+﻿using illegible.Server.StartupCleaner;
 using Mapster;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -77,14 +73,14 @@ namespace illegible.Server
                     // if any sources are http this method upgrade them to https
                     // just read this : https://docs.nwebsec.com/en/latest/nwebsec/Upgrade-insecure-requests.html
                     .UpgradeInsecureRequests()
-
+                    .ScriptSources(x=>x.Self())
                     // this method block mix content as you see 
                     // it help's to avoid from injection attacks
                     .BlockAllMixedContent()
 
                     // and here we go => set dribble as image source white list member
                     .ImageSources(s =>
-                        s.Self().CustomSources("https://localhost:44396/_framework/blazor.boot.json", "https://dribbble.com/"))
+                        s.Self().CustomSources("https://dribbble.com/"))
 
                     // set media source white list
                     .MediaSources(s =>
