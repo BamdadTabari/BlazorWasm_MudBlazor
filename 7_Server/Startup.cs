@@ -69,7 +69,10 @@ namespace illegible.Server
                     // default source for any content type set to self
                     // that mean's the web site is a default member of csp white list for it self
                     .DefaultSources(s => s.Self())
-
+                    // in custom sources you can see "data:" this is for styles or js file inside of libraries
+                    // i use this to allow telerik.Blazor UI Fonts and Styles
+                    .StyleSources(x=>x.Self().CustomSources("data:"))
+                    .FontSources(x=>x.Self().CustomSources("data:"))
                     // if any sources are http this method upgrade them to https
                     // just read this : https://docs.nwebsec.com/en/latest/nwebsec/Upgrade-insecure-requests.html
                     .UpgradeInsecureRequests()
@@ -77,7 +80,7 @@ namespace illegible.Server
                     // this method block mix content as you see 
                     // it help's to avoid from injection attacks
                     .BlockAllMixedContent()
-
+                
                     // and here we go => set dribble as image source white list member
                     .ImageSources(s =>
                         s.Self().CustomSources("https://dribbble.com/"))
@@ -87,7 +90,6 @@ namespace illegible.Server
                         s.Self().CustomSources("https://www.youtube.com/",
                             "https://www.aparat.com/"))
             );
-
 
             // tip : Referer header: privacy and security concerns : https://developer.mozilla.org/en-US/docs/Web/Security/Referer_header:_privacy_and_security_concerns#the_referrer_problem
             app.UseReferrerPolicy(opts =>

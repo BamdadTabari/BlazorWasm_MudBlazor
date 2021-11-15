@@ -42,8 +42,11 @@ namespace illegible.Client
 
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
-           
-            
+
+            // register the Telerik services
+            builder.Services.AddTelerikBlazor();
+
+
             await builder.Build().RunAsync();
         }
     }
