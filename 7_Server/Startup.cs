@@ -69,6 +69,7 @@ namespace illegible.Server
                     // default source for any content type set to self
                     // that mean's the web site is a default member of csp white list for it self
                     .DefaultSources(s => s.Self())
+
                     // in custom sources you can see "data:" this is for styles or js file inside of libraries
                     // i use this to allow telerik.Blazor UI Fonts and Styles
                     .StyleSources(x=>x.Self().CustomSources("data:"))
