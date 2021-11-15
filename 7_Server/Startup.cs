@@ -73,7 +73,7 @@ namespace illegible.Server
                     // if any sources are http this method upgrade them to https
                     // just read this : https://docs.nwebsec.com/en/latest/nwebsec/Upgrade-insecure-requests.html
                     .UpgradeInsecureRequests()
-                    .ScriptSources(x=>x.Self())
+                    .ScriptSources(x=>x.Self().UnsafeInline().UnsafeEval())
                     // this method block mix content as you see 
                     // it help's to avoid from injection attacks
                     .BlockAllMixedContent()
