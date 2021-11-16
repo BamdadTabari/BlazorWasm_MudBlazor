@@ -72,7 +72,7 @@ namespace illegible.Server
 
                     // in custom sources you can see "data:" this is for styles or js file inside of libraries
                     // i use this to allow telerik.Blazor UI Fonts and Styles
-                    .StyleSources(x=>x.Self().CustomSources("data:"))
+                    .StyleSources(x=>x.Self().CustomSources("data:").UnsafeInline())
                     .FontSources(x=>x.Self().CustomSources("data:"))
                     // if any sources are http this method upgrade them to https
                     // just read this : https://docs.nwebsec.com/en/latest/nwebsec/Upgrade-insecure-requests.html
