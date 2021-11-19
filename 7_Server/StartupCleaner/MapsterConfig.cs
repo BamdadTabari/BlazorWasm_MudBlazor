@@ -1,4 +1,5 @@
-﻿using ExpressionDebugger;
+﻿using System;
+using ExpressionDebugger;
 using illegible.Entity.BlogEntity.Post;
 using illegible.Shared.SharedDto.BlogPost;
 using Mapster;
@@ -33,10 +34,9 @@ namespace illegible.Server.StartupCleaner
             #region BlogPost 
          
             //twoWays Method is like reverseMap method in AutoMapper
-            config.NewConfig<BlogPost,BlogPostDto>().TwoWays()
-                // this method anable nested object maooing in mapster
-                .PreserveReference(true);
-
+            config.NewConfig<BlogPostDto, BlogPost>().TwoWays()
+                .PreserveReference(true);// this method (PreserveReference(true)) enable nested object mapping in mapster
+            
             #endregion
 
             return config;

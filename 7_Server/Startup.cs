@@ -65,8 +65,6 @@ namespace illegible.Server
                     //shared secure key between them is valid for 365 day
             }
 
-            // use elmah.io for error tracking // also you can use sentry.io it has more free options
-            app.UseElmahIo();
             app.UseCors("IllegibleCors");
             //Registered before static files to always set header
             #region NWebSec Configs Part 1

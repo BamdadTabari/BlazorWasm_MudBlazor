@@ -15,7 +15,7 @@ namespace illegible.Shared.SharedDto.BlogPost
         [Required]
         
         public string Summary { get; set; }
-        public DateTime WriteTime { get; set; }
+        public DateTime WriteTime { get; set; } = DateTime.Now;
         
         [Required]
         public string PostContext { get; set; }

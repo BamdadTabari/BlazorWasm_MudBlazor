@@ -70,14 +70,6 @@ namespace illegible.Server.StartupCleaner
 
             #endregion
 
-            #region elmah
-            services.AddElmahIo(o =>
-            {
-                o.ApiKey = "e762e81894f643dba04e81bfb6faeab5";
-                o.LogId = new Guid("192a5e5d-8c33-4bfd-a6c0-7ac6a1ab8ad5");
-            });
-            #endregion
-
             return services;
         }
     }

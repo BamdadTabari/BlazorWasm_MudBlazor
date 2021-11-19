@@ -16,42 +16,44 @@
         <div class="text-body text-center">
             <h1> Add Blog Post </h1>
         </div>
-        <TelerikForm Model="@BlogPost" OnValidSubmit="@AddBlogPost" Columns="2" ColumnSpacing="5%">
-            <FormValidation>
-                <DataAnnotationsValidator />
-            </FormValidation>
-            <FormItems>
-                <FormGroup LabelText="Post Context">
-                    <FormItem Field="@nameof(BlogPost.PostContext)">
-                        <Template>
-                            <label for="PostContext">PostContext*:</label>
-                            <TelerikTextArea Id="PostContext" @bind-Value="@BlogPost.PostContext" PlaceHolder="WriteYourPostHere...."></TelerikTextArea>
-                            <TelerikValidationMessage For="@(() => BlogPost.PostContext)"></TelerikValidationMessage>
-                        </Template>
-                    </FormItem>
-                </FormGroup>
-                <FormGroup LabelText="Post Details" Columns="2" ColumnSpacing="2%">
-                    <FormItem Field="@nameof(BlogPost.Title)" ColSpan="1"></FormItem>
-                    <FormItem Field="@nameof(BlogPost.AttachedLinkTypeEnum)" ColSpan="1"></FormItem>
-                    <FormItem Field="@nameof(BlogPost.PostImageUrl)" ColSpan="1"></FormItem>
-                    <FormItem Field="@nameof(BlogPost.PostVideoUrl)" ColSpan="1"></FormItem>
-                    <FormItem Field="@nameof(BlogPost.PostAttachedFileUrl)" ColSpan="1"></FormItem>
-                    <FormItem Field="@nameof(BlogPost.PostAttachedLinkUrl)" ColSpan="1"></FormItem>
-                    <FormItem Field="@nameof(BlogPost.PostAttachedLinkUrlSubject)" ColSpan="2">
-                        <Template>
-                            <TelerikTextArea Id="PostAttachedLinkUrlSubject" @bind-Value="BlogPost.PostAttachedLinkUrlSubject"></TelerikTextArea>
-                        </Template>
-                    </FormItem>
-                    <FormItem Field="@nameof(BlogPost.Summary)" ColSpan="2">
-                        <Template>
-                            <label for="Summary">Summary*:</label>
-                            <TelerikTextArea Id="Summary" @bind-Value="BlogPost.Summary" PlaceHolder="Write a brief of your subject"></TelerikTextArea>
-                            <TelerikValidationMessage For="@(() => BlogPost.Summary)"></TelerikValidationMessage>
-                        </Template>
-                    </FormItem>
-                </FormGroup>
-            </FormItems>
-        </TelerikForm>
+        <CascadingAuthenticationState>
+            <TelerikForm Model="@BlogPost" OnValidSubmit="@AddBlogPost" Columns="2" ColumnSpacing="5%">
+                <FormValidation>
+                    <DataAnnotationsValidator />
+                </FormValidation>
+                <FormItems>
+                    <FormGroup LabelText="Post Context">
+                        <FormItem Field="@nameof(BlogPost.PostContext)">
+                            <Template>
+                                <label for="PostContext">PostContext*:</label>
+                                <TelerikTextArea Id="PostContext" @bind-Value="@BlogPost.PostContext" PlaceHolder="WriteYourPostHere...."></TelerikTextArea>
+                                <TelerikValidationMessage For="@(() => BlogPost.PostContext)"></TelerikValidationMessage>
+                            </Template>
+                        </FormItem>
+                    </FormGroup>
+                    <FormGroup LabelText="Post Details" Columns="2" ColumnSpacing="2%">
+                        <FormItem Field="@nameof(BlogPost.Title)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.AttachedLinkTypeEnum)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.PostImageUrl)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.PostVideoUrl)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.PostAttachedFileUrl)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.PostAttachedLinkUrl)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.PostAttachedLinkUrlSubject)" ColSpan="2">
+                            <Template>
+                                <TelerikTextArea Id="PostAttachedLinkUrlSubject" @bind-Value="BlogPost.PostAttachedLinkUrlSubject"></TelerikTextArea>
+                            </Template>
+                        </FormItem>
+                        <FormItem Field="@nameof(BlogPost.Summary)" ColSpan="2">
+                            <Template>
+                                <label for="Summary">Summary*:</label>
+                                <TelerikTextArea Id="Summary" @bind-Value="BlogPost.Summary" PlaceHolder="Write a brief of your subject"></TelerikTextArea>
+                                <TelerikValidationMessage For="@(() => BlogPost.Summary)"></TelerikValidationMessage>
+                            </Template>
+                        </FormItem>
+                    </FormGroup>
+                </FormItems>
+            </TelerikForm>
+        </CascadingAuthenticationState>
     </div>
 </div>
 

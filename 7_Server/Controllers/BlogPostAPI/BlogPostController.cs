@@ -30,6 +30,7 @@ namespace illegible.Server.Controllers.BlogPostAPI
         public async Task AddBlogPost([FromBody] BlogPostDto blogPostDto)
         {
             System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            blogPostDto.Author = currentUser.Identity.Name;
 
             var blogPost = _mapper.From(blogPostDto).AdaptToType<Entity.BlogEntity.Post.BlogPost>();
             await _blogPostRepository.AddBlogPostAsync(blogPost);
