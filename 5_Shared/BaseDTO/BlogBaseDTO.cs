@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace illegible.Shared.BaseDTO
+namespace illegible.Shared.BaseDto
 {
-    public abstract class BlogBaseDTO<T>
+    public abstract class BlogBaseDto<T>
     {
         public T Id { get; set; }
 
@@ -16,7 +16,7 @@ namespace illegible.Shared.BaseDTO
     //you see default id type is long
     // but if need to have different type
     // just depend yor entity directly to ----> BaseEntity<T>
-    public abstract class BlogBaseDTO : BlogBaseDTO<long>
+    public abstract class BlogBaseDto : BlogBaseDto<long>
     {
     }
 

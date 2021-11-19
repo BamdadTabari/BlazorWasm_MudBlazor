@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace illegible.Shared.SharedDTO.Identity
+namespace illegible.Shared.SharedDto.Identity
 {
-    public class LoginModelDTO
+    public class LoginModelDto
     {
         [Required]
         public string Email { get; set; }

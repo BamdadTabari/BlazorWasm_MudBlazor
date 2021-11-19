@@ -1,4 +1,4 @@
-﻿using illegible.Shared.SharedDTO.Identity;
+﻿using illegible.Shared.SharedDto.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -8,18 +8,18 @@ namespace illegible.Server.Controllers.Identity
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountsController : ControllerBase
+    public class Accounts : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
 
-        public AccountsController(UserManager<IdentityUser> userManager)
+        public Accounts(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
         }
 
         //this method get register view model 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] RegisterModelDTO model)
+        public async Task<IActionResult> Post([FromBody] RegisterModelDto model)
         {
             
             var newUser = new IdentityUser
@@ -39,7 +39,7 @@ namespace illegible.Server.Controllers.Identity
                 var errors = result.Errors.Select(x => x.Description);
 
                 // send back errors
-                return Ok(new RegisterResultDTO
+                return Ok(new RegisterResultDto
                 {
                     Successful = false,
                     Errors = errors
@@ -48,7 +48,7 @@ namespace illegible.Server.Controllers.Identity
             }
 
             // send back Successful result
-            return Ok(new RegisterResultDTO { Successful = true });
+            return Ok(new RegisterResultDto { Successful = true });
         }
     }
 }

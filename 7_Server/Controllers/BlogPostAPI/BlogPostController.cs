@@ -1,33 +1,37 @@
 ﻿using illegible.Entity.BlogEntity.Post;
 using illegible.Repository.IRepository.BlogPostTablesIRepository;
-using illegible.Shared.SharedDTO.BlogPost;
+using illegible.Shared.SharedDto.BlogPost;
 using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace illegible.Server.Controllers.BlogPostAPI
 {
     [Route("[controller]")]
     [ApiController]
-    public class BlogPostController : ControllerBase
+    public class BlogPost: ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IBlogPostRepository _blogPostRepository;
-        public BlogPostController(IMapper mapper,
-            IBlogPostRepository blogPostRepository)
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public BlogPost(IMapper mapper, IBlogPostRepository blogPostRepository, UserManager<IdentityUser> userManager)
         {
             _mapper = mapper;
             _blogPostRepository = blogPostRepository;
+            _userManager = userManager;
         }
-        
+
         [HttpPost]
         [Route("AddBlogPost")]
-        public async Task AddBlogPost([FromBody] BlogPostDTO blogPostDTO)
+        public async Task AddBlogPost([FromBody] BlogPostDto blogPostDto)
         {
-            
-            var blogPost = _mapper.From(blogPostDTO).AdaptToType<BlogPost>();
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+
+            var blogPost = _mapper.From(blogPostDto).AdaptToType<Entity.BlogEntity.Post.BlogPost>();
             await _blogPostRepository.AddBlogPostAsync(blogPost);
         }
 
@@ -36,8 +40,8 @@ namespace illegible.Server.Controllers.BlogPostAPI
         public async Task<IActionResult> GetAllBlogPost()
         {
             var blogPostList = await _blogPostRepository.GetAllBlogPostAsync();
-            var blogPostDTOList = _mapper.From(blogPostList).AdaptToType<List<BlogPostDTO>>();
-            return Ok(blogPostDTOList);
+            var blogPostDtoList = _mapper.From(blogPostList).AdaptToType<List<BlogPostDto>>();
+            return Ok(blogPostDtoList);
         }
     }
 }

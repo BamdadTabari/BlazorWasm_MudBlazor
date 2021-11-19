@@ -31,7 +31,15 @@ namespace illegible.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("IllegibleCors", builder =>
+                {
+                    builder.WithOrigins("https://localhost:44345/", "http://localhost:6662")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod().SetPreflightMaxAge(TimeSpan.FromMinutes(1));
+                });
+            });
 
         }
 
@@ -59,7 +67,7 @@ namespace illegible.Server
 
             // use elmah.io for error tracking // also you can use sentry.io it has more free options
             app.UseElmahIo();
-
+            app.UseCors("IllegibleCors");
             //Registered before static files to always set header
             #region NWebSec Configs Part 1
             // Content Security Policy
@@ -69,7 +77,7 @@ namespace illegible.Server
                     // default source for any content type set to self
                     // that mean's the web site is a default member of csp white list for it self
                     .DefaultSources(s => s.Self())
-
+                    .ConnectSources(x=>x.Self().CustomSources("ws:"))
                     // in custom sources you can see "data:" this is for styles or js file inside of libraries
                     // i use this to allow telerik.Blazor UI Fonts and Styles
                     .StyleSources(x=>x.Self().CustomSources("data:").UnsafeInline())
@@ -81,11 +89,11 @@ namespace illegible.Server
                     // this method block mix content as you see 
                     // it help's to avoid from injection attacks
                     .BlockAllMixedContent()
-                
+                    
                     // and here we go => set dribble as image source white list member
                     .ImageSources(s =>
                         s.Self().CustomSources("https://dribbble.com/"))
-
+                    
                     // set media source white list
                     .MediaSources(s =>
                         s.Self().CustomSources("https://www.youtube.com/",

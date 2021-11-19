@@ -1,13 +1,13 @@
 ﻿using illegible.Kernel.Enums;
-using illegible.Shared.BaseDTO;
+using illegible.Shared.BaseDto;
 using System;
 
 using System.ComponentModel.DataAnnotations;
 
 
-namespace illegible.Shared.SharedDTO.BlogPost
+namespace illegible.Shared.SharedDto.BlogPost
 {
-    public class BlogPostDTO : BlogBaseDTO
+    public class BlogPostDto : BlogBaseDto
     {
         [Required]
         public string Title { get; set; }

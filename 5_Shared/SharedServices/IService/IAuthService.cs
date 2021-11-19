@@ -1,4 +1,4 @@
-﻿using illegible.Shared.SharedDTO.Identity;
+﻿using illegible.Shared.SharedDto.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,8 @@ namespace illegible.Shared.SharedServices.IService
 {
     public interface IAuthService
     {
-        Task<RegisterResultDTO> Register(RegisterModelDTO registerModel);
-        Task<LoginResultDTO> Login(LoginModelDTO loginModel);
+        Task<RegisterResultDto> Register(RegisterModelDto registerModel);
+        Task<LoginResultDto> Login(LoginModelDto loginModel);
         Task Logout();
     }
 }

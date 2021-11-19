@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace illegible.Shared.SharedDTO.Identity
+namespace illegible.Shared.SharedDto.Identity
 {
-    public class RegisterModelDTO
+    public class RegisterModelDto
     {
         [Required]
         [EmailAddress]

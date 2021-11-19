@@ -1,5 +1,5 @@
 ﻿using illegible.Kernel.Constants;
-using illegible.Shared.SharedDTO.Identity;
+using illegible.Shared.SharedDto.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -23,7 +23,7 @@ namespace illegible.Server.Controllers.Identity
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginModelDTO login)
+        public async Task<IActionResult> Login([FromBody] LoginModelDto login)
         {
             // so simple
             // i try to sign in User with password
@@ -32,7 +32,7 @@ namespace illegible.Server.Controllers.Identity
                 login.Password, false, false);
 
             // in case of error 
-            if (!result.Succeeded) return BadRequest(new LoginResultDTO
+            if (!result.Succeeded) return BadRequest(new LoginResultDto
             {
                 Successful = false,
                 Error = "Username or password are invalid."
@@ -81,8 +81,8 @@ namespace illegible.Server.Controllers.Identity
             var jweToken = new JwtSecurityTokenHandler()
                 .WriteToken(token);
 
-            // and there we go returning LoginResultDTO with token
-            return Ok(new LoginResultDTO
+            // and there we go returning LoginResultDto with token
+            return Ok(new LoginResultDto
             {
                 Successful = true,
                 Token = jweToken

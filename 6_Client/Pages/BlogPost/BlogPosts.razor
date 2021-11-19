@@ -5,7 +5,7 @@
 <div>
 
 
-    @if (blogPostDTOList == null)
+    @if (blogPostDtoList == null)
     {
         <h1>loading . . .  </h1>
     }
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var forecast in blogPostDTOList)
+                @foreach (var forecast in blogPostDtoList)
                 {
                     <tr>
                         <td>@forecast.Title</td>
@@ -36,12 +36,12 @@
 
 @code {
 
-    protected List<BlogPostDTO> blogPostDTOList = new List<BlogPostDTO>();
+    protected List<BlogPostDto> blogPostDtoList = new List<BlogPostDto>();
 
     protected override async Task OnInitializedAsync()
     {
-        blogPostDTOList = await _httpRequestHandler
-            .GetAsHttpAsync<List<BlogPostDTO>>("BlogPost/GetAllBlogPost");
+        blogPostDtoList = await _httpRequestHandler
+            .GetAsHttpAsync<List<BlogPostDto>>("BlogPost/GetAllBlogPost");
     }
 
 }

@@ -1,7 +1,7 @@
 ﻿
-namespace illegible.Shared.SharedDTO.Identity
+namespace illegible.Shared.SharedDto.Identity
 {
-    public class LoginResultDTO
+    public class LoginResultDto
     {
         public bool Successful { get; set; }
         public string Error { get; set; }
