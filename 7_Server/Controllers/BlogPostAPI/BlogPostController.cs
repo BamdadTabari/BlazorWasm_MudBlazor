@@ -1,13 +1,8 @@
 ﻿using System;
-using illegible.Entity.BlogEntity.Post;
 using illegible.Repository.IRepository.BlogPostTablesIRepository;
 using illegible.Shared.SharedDto.BlogPost;
-using Mapster;
-using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 
 namespace illegible.Server.Controllers.BlogPostAPI
 {
@@ -15,12 +10,11 @@ namespace illegible.Server.Controllers.BlogPostAPI
     [ApiController]
     public class BlogPost : ControllerBase
     {
-        private readonly IMapper _mapper;
+        
         private readonly IBlogPostRepository _blogPostRepository;
 
-        public BlogPost(IMapper mapper, IBlogPostRepository blogPostRepository)
+        public BlogPost(IBlogPostRepository blogPostRepository)
         {
-            _mapper = mapper;
             _blogPostRepository = blogPostRepository;
         }
 
@@ -52,8 +46,8 @@ namespace illegible.Server.Controllers.BlogPostAPI
         public async Task<IActionResult> GetAllBlogPost()
         {
             var blogPostList = await _blogPostRepository.GetAllBlogPostAsync();
-            var blogPostDtoList = _mapper.From(blogPostList).AdaptToType<List<BlogPostDto>>();
-            return Ok(blogPostDtoList);
+            //var blogPostDtoList = _mapper.From(blogPostList).AdaptToType<List<BlogPostDto>>();
+            return Ok(/*blogPostDtoList*/);
         }
     }
 }

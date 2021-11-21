@@ -1,5 +1,4 @@
 ﻿using illegible.Server.StartupCleaner;
-using Mapster;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

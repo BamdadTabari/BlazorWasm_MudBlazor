@@ -19,8 +19,6 @@ namespace illegible.Entity.BlogEntity.Post
         public string PostAttachedLinkUrl { get; set; }
         public string PostAttachedLinkUrlSubject { get; set; }
 
-        //relation
-        //public List<BlogPostComment> BlogPostCommentList { get; set; }
     }
 
     public class BlogPostConfiguration : IEntityTypeConfiguration<BlogPost>

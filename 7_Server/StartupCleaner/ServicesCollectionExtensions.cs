@@ -3,9 +3,6 @@ using illegible.DataStructure.IdentityDataContextDefine;
 using illegible.Kernel.Constants;
 using illegible.Repository.IRepository.BlogPostTablesIRepository;
 using illegible.Repository.Repository.BlogPostRepository;
-using illegible.Shared.SharedServices.IService;
-using illegible.Shared.SharedServices.Service;
-using MapsterMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -56,17 +53,6 @@ namespace illegible.Server.StartupCleaner
                     .GetBytes(jwtSetting.SecuritySignInKey)),
                 };
             });
-
-            #endregion
-
-            #region Mapster Services
-
-            // i define mapster defined configs as singlton service
-            // so you can use one config everyWhere
-            services.AddSingleton(MapsterConfig.GetConfiguredMappingConfig());
-
-            // add mappster method's service
-            services.AddScoped<IMapper, ServiceMapper>();
 
             #endregion
 
