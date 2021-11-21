@@ -4,6 +4,7 @@ using illegible.Entity.BlogEntity.Post;
 using illegible.Shared.SharedDto.BlogPost;
 using Mapster;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace illegible.Server.StartupCleaner
 {
@@ -29,13 +30,13 @@ namespace illegible.Server.StartupCleaner
                         ThrowOnFailedCompilation = true
                     })
             };
-
+            TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetEntryAssembly());
 
             #region BlogPost 
-         
+
             //twoWays Method is like reverseMap method in AutoMapper
-            config.NewConfig<BlogPostDto, BlogPost>().TwoWays()
-                .PreserveReference(true);// this method (PreserveReference(true)) enable nested object mapping in mapster
+            config.NewConfig<BlogPostDto, BlogPost>();
+                //.PreserveReference(true);// this method (PreserveReference(true)) enable nested object mapping in mapster
             
             #endregion
 
