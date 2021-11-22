@@ -17,15 +17,26 @@ namespace illegible.Server.StartupCleaner
         public static IServiceCollection AddConventionalService(
            this IServiceCollection services)
         {
+
+            #region Basic Services
+
+            services.AddSession();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("IllegibleCors", builder =>
+                {
+                    builder.WithOrigins("https://localhost:44345/", "http://localhost:6662")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod().SetPreflightMaxAge(TimeSpan.FromMinutes(1));
+                });
+            });
+            #endregion
+
             #region Repoes
 
             services.AddScoped<IBlogPostRepository, BlogPostRepository>();
-
-            #endregion
-
-            #region Session
-
-            services.AddSession();
 
             #endregion
 
@@ -53,6 +64,12 @@ namespace illegible.Server.StartupCleaner
                     .GetBytes(jwtSetting.SecuritySignInKey)),
                 };
             });
+
+            #endregion
+
+            #region AutoMapper
+
+            services.AddAutoMapper(typeof(Startup));
 
             #endregion
 
