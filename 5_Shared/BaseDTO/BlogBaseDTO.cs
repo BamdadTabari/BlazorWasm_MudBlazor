@@ -16,7 +16,7 @@ namespace illegible.Shared.BaseDto
     //you see default id type is long
     // but if need to have different type
     // just depend yor entity directly to ----> BaseEntity<T>
-    public abstract class BlogBaseDto : BlogBaseDto<long>
+    public abstract class BlogBaseDto : BlogBaseDto<long?>
     {
     }
 

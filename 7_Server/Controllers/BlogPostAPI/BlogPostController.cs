@@ -3,6 +3,8 @@ using illegible.Repository.IRepository.BlogPostTablesIRepository;
 using illegible.Shared.SharedDto.BlogPost;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using AutoMapper;
+
 
 namespace illegible.Server.Controllers.BlogPostAPI
 {
@@ -12,10 +14,12 @@ namespace illegible.Server.Controllers.BlogPostAPI
     {
         
         private readonly IBlogPostRepository _blogPostRepository;
+        private readonly IMapper _mapper;
 
-        public BlogPost(IBlogPostRepository blogPostRepository)
+        public BlogPost(IBlogPostRepository blogPostRepository, IMapper mapper)
         {
             _blogPostRepository = blogPostRepository;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -24,20 +28,21 @@ namespace illegible.Server.Controllers.BlogPostAPI
         {
             //System.Security.Claims.ClaimsPrincipal currentUser = this.User;
             //blogPostDto.Author = currentUser.Identity.Name;
-            var blogPost = new Entity.BlogEntity.Post.BlogPost()
-            {
-                Summary = blogPostDto.Summary,
-                PostAttachedLinkUrlSubject = blogPostDto.PostAttachedLinkUrlSubject,
-                PostContext = blogPostDto.PostContext,
-                AttachedLinkTypeEnum = blogPostDto.AttachedLinkTypeEnum,
-                Author = "illegible",
-                PostAttachedLinkUrl = blogPostDto.PostAttachedLinkUrl,
-                PostImageUrl = blogPostDto.PostImageUrl,
-                PostVideoUrl = blogPostDto.PostVideoUrl,
-                Title = blogPostDto.Title,
-                WriteTime = DateTime.Now
-            };
+            //var blogPost = new Entity.BlogEntity.Post.BlogPost()
+            //{
+            //    Summary = blogPostDto.Summary,
+            //    PostAttachedLinkUrlSubject = blogPostDto.PostAttachedLinkUrlSubject,
+            //    PostContext = blogPostDto.PostContext,
+            //    AttachedLinkTypeEnum = blogPostDto.AttachedLinkTypeEnum,
+            //    Author = "illegible",
+            //    PostAttachedLinkUrl = blogPostDto.PostAttachedLinkUrl,
+            //    PostImageUrl = blogPostDto.PostImageUrl,
+            //    PostVideoUrl = blogPostDto.PostVideoUrl,
+            //    Title = blogPostDto.Title,
+            //    WriteTime = DateTime.Now
+            //};
             //var blogPost = _mapper.From(blogPostDto).AdaptToType<Entity.BlogEntity.Post.BlogPost>();
+            var blogPost = _mapper.Map<Entity.BlogEntity.Post.BlogPost>(blogPostDto);
             await _blogPostRepository.AddBlogPostAsync(blogPost);
         }
 
