@@ -8,7 +8,6 @@ namespace illegible.Server.StartupCleaner
 {
     public static class AddDbContexts
     {
-        // config reflaction to be clean and lazy ofcurse
         public static IServiceCollection AddDbContextsService(
             this IServiceCollection services
             , IConfiguration configuration)

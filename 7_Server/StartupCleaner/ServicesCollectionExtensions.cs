@@ -23,15 +23,15 @@ namespace illegible.Server.StartupCleaner
             services.AddSession();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddCors(opt =>
-            {
-                opt.AddPolicy("IllegibleCors", builder =>
-                {
-                    builder.WithOrigins("https://localhost:44345/", "http://localhost:6662")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod().SetPreflightMaxAge(TimeSpan.FromMinutes(1));
-                });
-            });
+            //services.AddCors(opt =>
+            //{
+            //    opt.AddPolicy("IllegibleCors", builder =>
+            //    {
+            //        builder.WithOrigins("https://localhost:44345/", "http://localhost:6662")
+            //            .AllowAnyHeader()
+            //            .AllowAnyMethod().SetPreflightMaxAge(TimeSpan.FromMinutes(1));
+            //    });
+            //});
             #endregion
 
             #region Repoes
