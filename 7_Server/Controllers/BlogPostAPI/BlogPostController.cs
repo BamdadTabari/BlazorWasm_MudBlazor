@@ -1,5 +1,4 @@
-﻿using System;
-using System.Security.Claims;
+﻿using System.Collections.Generic;
 using illegible.Repository.IRepository.BlogPostTablesIRepository;
 using illegible.Shared.SharedDto.BlogPost;
 using Microsoft.AspNetCore.Mvc;
@@ -32,11 +31,8 @@ namespace illegible.Server.Controllers.BlogPostAPI
         {
 
             blogPostDto.Author = _userManager.GetUserName(User);
-            
             var blogPost = _mapper.Map<Entity.BlogEntity.Post.BlogPost>(blogPostDto);
-            
             await _blogPostRepository.AddBlogPostAsync(blogPost);
-
         }
 
         [HttpGet]
@@ -44,8 +40,8 @@ namespace illegible.Server.Controllers.BlogPostAPI
         public async Task<IActionResult> GetAllBlogPost()
         {
             var blogPostList = await _blogPostRepository.GetAllBlogPostAsync();
-            //var blogPostDtoList = _mapper.From(blogPostList).AdaptToType<List<BlogPostDto>>();
-            return Ok(/*blogPostDtoList*/);
+            var blogPostDtoList = _mapper.Map<IEnumerable<BlogPostDto>>(blogPostList);
+            return Ok(blogPostDtoList);
         }
     }
 }
