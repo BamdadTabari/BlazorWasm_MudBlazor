@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Security.Claims;
 using illegible.Repository.IRepository.BlogPostTablesIRepository;
 using illegible.Shared.SharedDto.BlogPost;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace illegible.Server.Controllers.BlogPostAPI
@@ -12,23 +14,29 @@ namespace illegible.Server.Controllers.BlogPostAPI
     [ApiController]
     public class BlogPost : ControllerBase
     {
-        
+
         private readonly IBlogPostRepository _blogPostRepository;
         private readonly IMapper _mapper;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public BlogPost(IBlogPostRepository blogPostRepository, IMapper mapper)
+        public BlogPost(IBlogPostRepository blogPostRepository, IMapper mapper, UserManager<IdentityUser> userManager)
         {
             _blogPostRepository = blogPostRepository;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         [HttpPost]
         [Route("AddBlogPost")]
         public async Task AddBlogPost([FromBody] BlogPostDto blogPostDto)
         {
+
+            blogPostDto.Author = _userManager.GetUserName(User);
+            
             var blogPost = _mapper.Map<Entity.BlogEntity.Post.BlogPost>(blogPostDto);
-            blogPost.Author = " asdasd";
+            
             await _blogPostRepository.AddBlogPostAsync(blogPost);
+
         }
 
         [HttpGet]
