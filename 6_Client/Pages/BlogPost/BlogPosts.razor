@@ -1,47 +1,63 @@
 ﻿@page "/AllPost"
 
-<h3>BlogPosts</h3>
 
-<div>
-
-
-    @if (blogPostDtoList == null)
+<div >
+    @foreach (var blogPostDto in BlogPostDtoList)
     {
-        <h1>loading . . .  </h1>
-    }
-    else
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var forecast in blogPostDtoList)
+        <div>
+            <TelerikCard Width="250px">
+                <CardHeader Class="k-hbox">
+                    @*<div class="k-avatar-circle k-avatar avatar-size">
+                        <div class="k-avatar-image ng-star-inserted" style="background-image: url(@item.AvatarSrc);"></div>
+                    </div>*@
+                    <div>
+                        <CardTitle>
+                            @blogPostDto.Title
+                        </CardTitle>
+                        <CardSubTitle>
+                            @blogPostDto.Summary
+                        </CardSubTitle>
+                    </div>
+                </CardHeader>
+                @*<CardBody>
+                    <Ca
+                </CardBody>*@
+                @*<CardImage Src="@blogPostDto.ImageSrc" Class="image-height"></CardImage>*@
+                <!--<CardActions Class="justify-space-between">-->
+                    @*<div>
+                        <TelerikButton Class="@($"k-flat {item.LikeActionClass}")" Icon="@item.LikeActionIcon" Title="Like" OnClick="(() => item.PostLiked = !item.PostLiked)"></TelerikButton>
+                        <TelerikButton Class="k-flat" Icon="comment" Title="Comment" OnClick="@(() => item.CommentsVisible = !item.CommentsVisible)"></TelerikButton>
+                        <TelerikButton Class="k-flat" Icon="share" Title="Share" OnClick="@(() => Share(item))"></TelerikButton>
+                    </div>
+                    <span class="post-likes-count">@item.PostLikedText</span>*@
+                <!--</CardActions>-->
+                @*@if (item.CommentsVisible)
                 {
-                    <tr>
-                        <td>@forecast.Title</td>
-                        <td>@forecast.Id</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                    <CardSeparator></CardSeparator>
+                    <CardBody>
+                        @foreach (var comment in item.Comments)
+                        {
+                            <CardComment Comment="@comment"></CardComment>
+                        }
+                        <TelerikTextArea @bind-Value="@item.TempComment" Width="100%" Class="mb-xs"></TelerikTextArea>
+                        <div class="align-end">
+                            <TelerikButton Class="k-flat" Primary="true" OnClick="@(() => PostComment(item))">Post</TelerikButton>
+                        </div>
+                    </CardBody>
+                }*@
+            </TelerikCard>
+        </div>
     }
 </div>
 
-
 @code {
 
-    protected List<BlogPostDto> blogPostDtoList = new List<BlogPostDto>();
+    protected List<BlogPostDto> BlogPostDtoList = new List<BlogPostDto>();
 
     protected override async Task OnInitializedAsync()
     {
-        blogPostDtoList = await _httpRequestHandler
-            .GetAsHttpAsync<List<BlogPostDto>>("BlogPost/GetAllBlogPost");
+        BlogPostDtoList = await _httpRequestHandler
+        .GetAsHttpAsync<List<BlogPostDto>>("BlogPost/GetAllBlogPost");
     }
 
 }

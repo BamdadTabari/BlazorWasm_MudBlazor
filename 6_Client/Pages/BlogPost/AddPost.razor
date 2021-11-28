@@ -23,11 +23,9 @@
                 </FormValidation>
                 <FormItems>
                     <FormGroup LabelText="Post Context">
-                        <FormItem Field="@nameof(BlogPost.PostContext)">
+                        <FormItem  Field="@nameof(BlogPost.PostContext)">
                             <Template>
-                                <label for="PostContext">PostContext*:</label>
-                                
-                                <TelerikTextArea Id="PostContext" @bind-Value="@BlogPost.PostContext" PlaceHolder="WriteYourPostHere...."></TelerikTextArea>
+                                <TelerikTextArea Label="Enter PostContext*:" AutoSize="true" Id="PostContext" @bind-Value="@BlogPost.PostContext" PlaceHolder="WriteYourPostHere...."></TelerikTextArea>
                                 <TelerikValidationMessage For="@(() => BlogPost.PostContext)"></TelerikValidationMessage>
                             </Template>
                         </FormItem>
@@ -41,13 +39,12 @@
                         <FormItem Field="@nameof(BlogPost.PostAttachedLinkUrl)" ColSpan="1"></FormItem>
                         <FormItem Field="@nameof(BlogPost.PostAttachedLinkUrlSubject)" ColSpan="2">
                             <Template>
-                                <TelerikTextArea Id="PostAttachedLinkUrlSubject" @bind-Value="BlogPost.PostAttachedLinkUrlSubject"></TelerikTextArea>
+                                <TelerikTextArea Label="Enter Post Attached Link Url Subject:" AutoSize="true" Id="PostAttachedLinkUrlSubject" @bind-Value="BlogPost.PostAttachedLinkUrlSubject"></TelerikTextArea>
                             </Template>
                         </FormItem>
                         <FormItem Field="@nameof(BlogPost.Summary)" ColSpan="2">
                             <Template>
-                                <label for="Summary">Summary*:</label>
-                                <TelerikTextArea Id="Summary" @bind-Value="BlogPost.Summary" PlaceHolder="Write a brief of your subject"></TelerikTextArea>
+                                <TelerikTextArea Label="Enter Summary*:" AutoSize="true" Id="Summary" @bind-Value="BlogPost.Summary" PlaceHolder="Write a brief of your subject"></TelerikTextArea>
                                 <TelerikValidationMessage For="@(() => BlogPost.Summary)"></TelerikValidationMessage>
                             </Template>
                         </FormItem>
