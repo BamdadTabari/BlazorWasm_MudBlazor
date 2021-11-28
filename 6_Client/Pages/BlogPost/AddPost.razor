@@ -10,7 +10,7 @@
         text-align: center;
     }
 </style>
-
+<TelerikNotification @ref="NotificationComponent"></TelerikNotification>
 <div class="IBGCrosscheckPattern IBorder1">
     <div class="container">
         <div class="text-body text-center">
@@ -23,7 +23,7 @@
                 </FormValidation>
                 <FormItems>
                     <FormGroup LabelText="Post Context">
-                        <FormItem  Field="@nameof(BlogPost.PostContext)">
+                        <FormItem Field="@nameof(BlogPost.PostContext)">
                             <Template>
                                 <TelerikTextArea Label="Enter PostContext*:" AutoSize="true" Id="PostContext" @bind-Value="@BlogPost.PostContext" PlaceHolder="WriteYourPostHere...."></TelerikTextArea>
                                 <TelerikValidationMessage For="@(() => BlogPost.PostContext)"></TelerikValidationMessage>
@@ -52,18 +52,41 @@
                 </FormItems>
             </TelerikForm>
         </CascadingAuthenticationState>
+       
+
     </div>
 </div>
 
 @code {
+    TelerikNotification NotificationComponent { get; set; }
 
     public BlogPostDto BlogPost = new BlogPostDto();
 
     protected async Task AddBlogPost()
     {
 
-        await _httpRequestHandler
+        var responseMessage = await _httpRequestHandler
             .PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            NotificationComponent.Show(new NotificationModel()
+            {
+                Text = "Post Added Successfully.",
+                ThemeColor = "success",
+                ShowIcon = true,
+                Icon = "caret-tr"
+            });
+        }
+        else
+        {
+            NotificationComponent.Show(new NotificationModel()
+            {
+                Text = "Something is wrong in your post data , please review and try again.",
+                ThemeColor = "error",
+                ShowIcon = true,
+                Icon = "caret-tr"
+            });
+        }
 
     }
 
