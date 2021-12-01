@@ -69,13 +69,7 @@
             .PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
         if (responseMessage.IsSuccessStatusCode)
         {
-            NotificationComponent.Show(new NotificationModel()
-            {
-                Text = "Post Added Successfully.",
-                ThemeColor = "success",
-                ShowIcon = true,
-                Icon = "caret-tr"
-            });
+            //_jsRuntime.
         }
         else
         {
