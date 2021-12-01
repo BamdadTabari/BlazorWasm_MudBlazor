@@ -1,3 +1,30 @@
 ﻿@page "/"
+@*<img src="/Images/MohammadJavadTabari.jpg" />*@
+<TelerikCarousel Data="@CarouselData"
+                 Width="512px" Height="384px">
+    <Template>
+        <div class="image-with-text">
+            <p>Showing image @(context.ImageID) of @CarouselData.Count.ToString().</p>
+            <img src="https://demos.telerik.com/blazor-ui/images/photos/@(context.ImageID).jpg" alt="Photograph" width="512" height="384" />
+            
+        </div>
+    </Template>
+</TelerikCarousel>
+@code {
+    public List<CarouselModel> CarouselData { get; set; }
 
+    protected override Task OnInitializedAsync()
+    {
+        CarouselData = Enumerable.Range(1, 7).Select(x => new CarouselModel
+        {
+            ImageID = x
+        }).ToList();
 
+        return base.OnInitializedAsync();
+    }
+
+    public class CarouselModel
+    {
+        public int ImageID { get; set; }
+    }
+}
