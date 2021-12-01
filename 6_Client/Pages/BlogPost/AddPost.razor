@@ -10,7 +10,7 @@
         text-align: center;
     }
 </style>
-<TelerikNotification @ref="NotificationComponent"></TelerikNotification>
+
 <div class="IBGCrosscheckPattern IBorder1">
     <div class="container">
         <div class="text-body text-center">
@@ -58,7 +58,8 @@
 </div>
 
 @code {
-    TelerikNotification NotificationComponent { get; set; }
+    [CascadingParameter]
+    protected Notification Notification { get; set; }
 
     public BlogPostDto BlogPost = new BlogPostDto();
 
@@ -69,16 +70,22 @@
             .PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
         if (responseMessage.IsSuccessStatusCode)
         {
-            //_jsRuntime.
+            Notification.Instance.Show(new NotificationModel()
+            {
+                Text = "IsSuccessStatusCode",
+                ThemeColor = ThemeColors.Success,
+                CloseAfter = 10000,
+                Closable = true
+            });
         }
         else
         {
-            NotificationComponent.Show(new NotificationModel()
+            Notification.Instance.Show(new NotificationModel()
             {
-                Text = "Something is wrong in your post data , please review and try again.",
-                ThemeColor = "error",
-                ShowIcon = true,
-                Icon = "caret-tr"
+                Text = "IsFail",
+                ThemeColor = ThemeColors.Error,
+                CloseAfter = 10000,
+                Closable = true
             });
         }
 

@@ -1,5 +1,4 @@
 ﻿@*   *********   base   *********     *@
-
 @using System.Net.Http
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Components.Forms
@@ -12,22 +11,21 @@
 @using illegible.Client.Shared
 @using System.Text;
 @using System.Text.Json;
-
-
-
 @*   *********   nugets   *********     *@
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@*  ui library *@ @using Telerik.Blazor @using Telerik.Blazor.Components
-
+@*  ui library *@
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using Telerik.Blazor.Services
 @*   *********   Personal Internal Dto   *********     *@
 @using illegible.Shared.SharedDto.BlogPost
 @using illegible.Shared.SharedDto.Identity
-
 @*   *********   Personal Internal SERVICES   *********     *@
 @using illegible.Shared.SharedServices.IService
 @inject IHttpRequestHandlerService _httpRequestHandler;
 @*   *********   Personal Internal COMPONENTS   *********     *@
 @using illegible.Client.Pages.IdntityPages
 @using illegible.Client.Pages.BlogPost
-
+@*   *********   Personal Internal Extensions   *********     *@
+@using illegible.Client.Extensions.TelerikBlazorExtension
