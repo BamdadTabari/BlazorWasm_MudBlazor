@@ -2,52 +2,28 @@
 
 
 <div >
-    @foreach (var blogPostDto in BlogPostDtoList)
-    {
-        <div>
-            <TelerikCard Width="250px">
-                <CardHeader Class="k-hbox">
-                    @*<div class="k-avatar-circle k-avatar avatar-size">
-                        <div class="k-avatar-image ng-star-inserted" style="background-image: url(@item.AvatarSrc);"></div>
+    <TelerikListView Data="@BlogPostDtoList" Width="100%" Pageable="true">
+        <HeaderTemplate>
+            <h2>Last Posts:</h2>
+        </HeaderTemplate>
+        <Template>
+            <div class="k-card k-card-horizontal">
+                <div class="k-vbox k-flex-grow">
+                    <div class="k-card-body">
+                        <h4 class="k-card-title">@context.Title</h4>
+                        <h5 class="k-card-subtitle">@context.Author</h5>
+                        <div class="card-date">@context.WriteTime.ToString("MMM dd yyyy")</div>
+                        <p>Summary: @context.Summary</p>
+                    </div>
+                    @*<div class="k-card-actions k-card-actions-horizontal k-card-actions-start">
+                        <ListViewCommandButton OnClick="@SaveForLater" Enabled="@(!SavedArticles.Contains(context))" Class="k-flat">Save for later</ListViewCommandButton>
+                        <ListViewCommandButton OnClick="@AddFavorite" Enabled="@(!Favorites.Contains(context))" Class="k-flat">Add to favorites</ListViewCommandButton>
                     </div>*@
-                    <div>
-                        <CardTitle>
-                            @blogPostDto.Title
-                        </CardTitle>
-                        <CardSubTitle>
-                            @blogPostDto.Summary
-                        </CardSubTitle>
-                    </div>
-                </CardHeader>
-                @*<CardBody>
-                    <Ca
-                </CardBody>*@
-                @*<CardImage Src="@blogPostDto.ImageSrc" Class="image-height"></CardImage>*@
-                <!--<CardActions Class="justify-space-between">-->
-                    @*<div>
-                        <TelerikButton Class="@($"k-flat {item.LikeActionClass}")" Icon="@item.LikeActionIcon" Title="Like" OnClick="(() => item.PostLiked = !item.PostLiked)"></TelerikButton>
-                        <TelerikButton Class="k-flat" Icon="comment" Title="Comment" OnClick="@(() => item.CommentsVisible = !item.CommentsVisible)"></TelerikButton>
-                        <TelerikButton Class="k-flat" Icon="share" Title="Share" OnClick="@(() => Share(item))"></TelerikButton>
-                    </div>
-                    <span class="post-likes-count">@item.PostLikedText</span>*@
-                <!--</CardActions>-->
-                @*@if (item.CommentsVisible)
-                {
-                    <CardSeparator></CardSeparator>
-                    <CardBody>
-                        @foreach (var comment in item.Comments)
-                        {
-                            <CardComment Comment="@comment"></CardComment>
-                        }
-                        <TelerikTextArea @bind-Value="@item.TempComment" Width="100%" Class="mb-xs"></TelerikTextArea>
-                        <div class="align-end">
-                            <TelerikButton Class="k-flat" Primary="true" OnClick="@(() => PostComment(item))">Post</TelerikButton>
-                        </div>
-                    </CardBody>
-                }*@
-            </TelerikCard>
-        </div>
-    }
+                </div>
+                <img class="k-card-image" src="@context.PostImageUrl" />
+            </div>
+        </Template>
+    </TelerikListView>
 </div>
 
 @code {
