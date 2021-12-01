@@ -13,8 +13,11 @@
         <TelerikNotification @ref="@Notification.Instance" HorizontalPosition="@NotificationHorizontalPosition.Center" VerticalPosition="@NotificationVerticalPosition.Top" Class="big-notification">
         </TelerikNotification>
         <CascadingValue IsFixed="true" Value="@Notification">
-            <div class="content px-4">
-                @Body
+            <div class="main">
+                <BreadcrumbWrapper />
+                <div class="content px-4">
+                    @Body
+                </div>
             </div>
         </CascadingValue>
     </div>
