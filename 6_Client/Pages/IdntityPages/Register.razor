@@ -1,7 +1,6 @@
 ﻿@page "/register"
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
-@using System.ComponentModel.DataAnnotations
 
 <div class="IH9">
     <CascadingAuthenticationState>
@@ -11,6 +10,9 @@
                     <Content>
                         <h2>Registration Form</h2>
                         <TelerikForm EditContext="@RegistrationEditContext">
+                            <FormValidation>
+                                <DataAnnotationsValidator></DataAnnotationsValidator>
+                            </FormValidation>
                             <FormButtons> </FormButtons>
                         </TelerikForm>
                     </Content>
@@ -62,119 +64,41 @@
         </TelerikWizard>
     </CascadingAuthenticationState>
 </div>
-
 @code {
-    public int IndexValue { get; set; }
-    public Terms TermsModel { get; set; } = new Terms();
-    
-    private RegisterModelDto _registerModel = new RegisterModelDto();
 
+    #region Props
+
+    private int IndexValue { get; set; }
+    private Terms TermsModel { get; set; } = new Terms();
+    private RegisterModelDto _registerModel = new RegisterModelDto();
     public EditContext RegistrationEditContext { get; set; }
 
+    #endregion
+
+    #region Actions
     protected override void OnInitialized()
     {
-        InitRegistration();
-        base.OnInitialized();
+        InitRegistration(); base.OnInitialized();
     }
-
     private void OnClear()
     {
-        _registerModel = new RegisterModelDto();
-        InitRegistration();
+        _registerModel = new RegisterModelDto(); InitRegistration();
     }
-
-    private void InitRegistration()
-    {
-        RegistrationEditContext = new EditContext(_registerModel);
-    }
-
-   
+    private void InitRegistration() => RegistrationEditContext = new EditContext(_registerModel);
     private async Task HandleRegistration()
     {
-
         var result = await AuthService.Register(_registerModel);
-
         if (result.Successful)
         {
-            Notification.Instance.Show(new NotificationModel()
-            {
-                Text = "Post Added Successfully",
-                ThemeColor = ThemeColors.Success,
-                CloseAfter = 5000,
-                Closable = true
-            });
+            Notification.NotificationShow("The Registration Is Completed Successfully", "success", "user");
+
             NavigationManager.NavigateTo("/login");
         }
-
+        else
+        {
+            Notification.NotificationShow("The Registration Failed", "error", "lock");
+            IndexValue = 0;
+        }
     }
+    #endregion
 }
-
-
-
-@*@page "/register"
-    @inject IAuthService AuthService
-    @inject NavigationManager NavigationManager
-
-    <h1>Register</h1>
-
-    @if (ShowErrors)
-    {
-        <div class="alert alert-danger" role="alert">
-            @foreach (var error in Errors)
-                        {
-                <p>@error</p>
-            }
-        </div>
-    }
-
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Please enter your details</h5>
-            <EditForm Model="RegisterModel" OnValidSubmit="HandleRegistration">
-                <DataAnnotationsValidator />
-                <ValidationSummary />
-
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <InputText Id="email" class="form-control" @bind-Value="RegisterModel.Email" />
-                    <ValidationMessage For="@(() => RegisterModel.Email)" />
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterModel.Password" />
-                    <ValidationMessage For="@(() => RegisterModel.Password)" />
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <InputText Id="confirmPassword" type="password" class="form-control" @bind-Value="RegisterModel.ConfirmPassword" />
-                    <ValidationMessage For="@(() => RegisterModel.ConfirmPassword)" />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </EditForm>
-        </div>
-    </div>
-
-    @code {
-
-        private RegisterModelDto RegisterModel = new RegisterModelDto();
-                    private bool ShowErrors;
-                    private IEnumerable<string> Errors;
-
-                    private async Task HandleRegistration()
-                    {
-                        ShowErrors = false;
-
-                        var result = await AuthService.Register(RegisterModel);
-
-                        if (result.Successful)
-                        {
-                            NavigationManager.NavigateTo("/login");
-                        }
-                        else
-                        {
-                            Errors = result.Errors;
-                            ShowErrors = true;
-                        }
-                    }
-
-    }*@

@@ -1,5 +1,4 @@
 ﻿@layout TelerikLayout
-
 @inherits LayoutComponentBase
 
 <div class="page">
@@ -10,9 +9,9 @@
         <div class="top-row px-4">
             <LoginDisplay />
         </div>
-        <TelerikNotification @ref="@Notification.Instance" HorizontalPosition="@NotificationHorizontalPosition.Center" VerticalPosition="@NotificationVerticalPosition.Top" Class="big-notification">
+        <TelerikNotification @ref="@Notification.Instance" AnimationType="@AnimationType.PushRight" AnimationDuration="300" HorizontalPosition="@NotificationHorizontalPosition.Center" VerticalPosition="@NotificationVerticalPosition.Top" Class="big-notification">
         </TelerikNotification>
-        <CascadingValue IsFixed="true" Value="@Notification">
+        <CascadingValue IsFixed="true" Value="@Notification.Instance">
             <div class="main">
                 <BreadcrumbWrapper />
                 <div class="content px-4">
@@ -22,7 +21,3 @@
         </CascadingValue>
     </div>
 </div>
-@code{
-    Notification Notification { get; set; } = new Notification();
-}
-

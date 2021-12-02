@@ -1,94 +1,75 @@
 ﻿@page "/addBlogPost"
 
-    <style>
-        h1 {
-            font-family: IArchitectsDaughter-Regular;
-        }
-
-        label {
-            font-family: IGluten-Black;
-            text-align: center;
-        }
-    </style>
-
-    <div class="IBGCrosscheckPattern IBorder1">
-        <div class="container">
-            <div class="text-body text-center">
-                <h1> Add Blog Post </h1>
-            </div>
-            <CascadingAuthenticationState>
-                <TelerikForm Model="@BlogPost" OnValidSubmit="@AddBlogPost" Columns="2" ColumnSpacing="5%">
-                    <FormValidation>
-                        <DataAnnotationsValidator />
-                    </FormValidation>
-                    <FormItems>
-                        <FormGroup LabelText="Post Context">
-                            <FormItem Field="@nameof(BlogPost.PostContext)">
-                                <Template>
-                                    <TelerikTextArea Label="Enter PostContext*:" AutoSize="true" Id="PostContext" @bind-Value="@BlogPost.PostContext" PlaceHolder="WriteYourPostHere...."></TelerikTextArea>
-                                    <TelerikValidationMessage For="@(() => BlogPost.PostContext)"></TelerikValidationMessage>
-                                </Template>
-                            </FormItem>
-                        </FormGroup>
-                        <FormGroup LabelText="Post Details" Columns="2" ColumnSpacing="2%">
-                            <FormItem Field="@nameof(BlogPost.Title)" ColSpan="1"></FormItem>
-                            <FormItem Field="@nameof(BlogPost.AttachedLinkTypeEnum)" ColSpan="1"></FormItem>
-                            <FormItem Field="@nameof(BlogPost.PostImageUrl)" ColSpan="1"></FormItem>
-                            <FormItem Field="@nameof(BlogPost.PostVideoUrl)" ColSpan="1"></FormItem>
-                            <FormItem Field="@nameof(BlogPost.PostAttachedFileUrl)" ColSpan="1"></FormItem>
-                            <FormItem Field="@nameof(BlogPost.PostAttachedLinkUrl)" ColSpan="1"></FormItem>
-                            <FormItem Field="@nameof(BlogPost.PostAttachedLinkUrlSubject)" ColSpan="2">
-                                <Template>
-                                    <TelerikTextArea Label="Enter Post Attached Link Url Subject:" AutoSize="true" Id="PostAttachedLinkUrlSubject" @bind-Value="BlogPost.PostAttachedLinkUrlSubject"></TelerikTextArea>
-                                </Template>
-                            </FormItem>
-                            <FormItem Field="@nameof(BlogPost.Summary)" ColSpan="2">
-                                <Template>
-                                    <TelerikTextArea Label="Enter Summary*:" AutoSize="true" Id="Summary" @bind-Value="BlogPost.Summary" PlaceHolder="Write a brief of your subject"></TelerikTextArea>
-                                    <TelerikValidationMessage For="@(() => BlogPost.Summary)"></TelerikValidationMessage>
-                                </Template>
-                            </FormItem>
-                        </FormGroup>
-                    </FormItems>
-                </TelerikForm>
-            </CascadingAuthenticationState>
-
-
-        </div>
-    </div>
-
-    @code {
-        //[CascadingParameter]
-        //protected Notification Notification { get; set; }
-
-        public BlogPostDto BlogPost = new BlogPostDto();
-
-        protected async Task AddBlogPost()
-        {
-
-            var responseMessage = await _httpRequestHandler
-                .PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                Notification.Instance.Show(new NotificationModel()
-                {
-                    Text = "Post Added Successfully",
-                    ThemeColor = ThemeColors.Success,
-                    CloseAfter = 10000,
-                    Closable = true
-                });
-            }
-            else
-            {
-                Notification.Instance.Show(new NotificationModel()
-                {
-                    Text = "Failed To Add Post",
-                    ThemeColor = ThemeColors.Error,
-                    CloseAfter = 10000,
-                    Closable = true
-                });
-            }
-
-        }
-
+<style>
+    h1 {
+        font-family: IArchitectsDaughter-Regular;
     }
+
+    label {
+        font-family: IGluten-Black;
+        text-align: center;
+    }
+</style>
+
+<div class="IBGCrosscheckPattern IBorder1">
+    <div class="container">
+        <div class="text-body text-center">
+            <h1> Add Blog Post </h1>
+        </div>
+        <CascadingAuthenticationState>
+            <TelerikForm Model="@BlogPost" OnValidSubmit="@AddBlogPost" Columns="2" ColumnSpacing="5%">
+                <FormValidation>
+                    <DataAnnotationsValidator />
+                </FormValidation>
+                <FormItems>
+                    <FormGroup LabelText="Post Context">
+                        <FormItem Field="@nameof(BlogPost.PostContext)">
+                            <Template>
+                                <TelerikTextArea Label="Enter PostContext*:" AutoSize="true" Id="PostContext" @bind-Value="@BlogPost.PostContext" PlaceHolder="WriteYourPostHere...."></TelerikTextArea>
+                                <TelerikValidationMessage For="@(() => BlogPost.PostContext)"></TelerikValidationMessage>
+                            </Template>
+                        </FormItem>
+                    </FormGroup>
+                    <FormGroup LabelText="Post Details" Columns="2" ColumnSpacing="2%">
+                        <FormItem Field="@nameof(BlogPost.Title)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.AttachedLinkTypeEnum)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.PostImageUrl)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.PostVideoUrl)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.PostAttachedFileUrl)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.PostAttachedLinkUrl)" ColSpan="1"></FormItem>
+                        <FormItem Field="@nameof(BlogPost.PostAttachedLinkUrlSubject)" ColSpan="2">
+                            <Template>
+                                <TelerikTextArea Label="Enter Post Attached Link Url Subject:" AutoSize="true" Id="PostAttachedLinkUrlSubject" @bind-Value="BlogPost.PostAttachedLinkUrlSubject"></TelerikTextArea>
+                            </Template>
+                        </FormItem>
+                        <FormItem Field="@nameof(BlogPost.Summary)" ColSpan="2">
+                            <Template>
+                                <TelerikTextArea Label="Enter Summary*:" AutoSize="true" Id="Summary" @bind-Value="BlogPost.Summary" PlaceHolder="Write a brief of your subject"></TelerikTextArea>
+                                <TelerikValidationMessage For="@(() => BlogPost.Summary)"></TelerikValidationMessage>
+                            </Template>
+                        </FormItem>
+                    </FormGroup>
+                </FormItems>
+            </TelerikForm>
+        </CascadingAuthenticationState>
+
+
+    </div>
+</div>
+
+@code {
+    public BlogPostDto BlogPost = new BlogPostDto();
+    protected async Task AddBlogPost()
+    {
+        var responseMessage = await _httpRequestHandler
+            .PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            Notification.NotificationShow("Post Added Successfully", "success", "plus-sm");
+        }
+        else
+        {
+            Notification.NotificationShow("Failed To Add Post", "error", "x");
+        }
+    }
+}

@@ -31,12 +31,10 @@ namespace illegible.Shared.SharedServices.Service
         }
 
         // get register view model and validate it
-        public async Task<RegisterResultDto> Register
-            (RegisterModelDto registerModel)
+        public async Task<RegisterResultDto> Register(RegisterModelDto registerModel)
         {
             // first i serialize RegisterResultDto to json
-            var registerModelAsJson = JsonSerializer
-                .Serialize(registerModel);
+            var registerModelAsJson = JsonSerializer.Serialize(registerModel);
 
             // then i send jsonRegisterViewModel
             // to accounts api controller
@@ -44,9 +42,7 @@ namespace illegible.Shared.SharedServices.Service
             // as you see i'm encoding the http request with utf8
             // for more security you can do it with utf32 or something else
             var response = await _httpClient
-                .PostAsync("api/accounts",
-                new StringContent(registerModelAsJson,
-                Encoding.UTF8, "application/json"));
+                .PostAsync("api/accounts", new StringContent(registerModelAsJson, Encoding.UTF8, "application/json"));
 
             // http response is a jsonRegisterResultDto
             // then i deserialize it to  RegisterResultDto object

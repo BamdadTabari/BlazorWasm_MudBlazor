@@ -13,6 +13,7 @@
     .big-notification {
         z-index: 1234;
     }
+
     .k-listview-header {
         padding: 20px 28px;
         text-transform: uppercase;
@@ -25,18 +26,18 @@
         box-shadow: none;
     }
 
-    .k-card:last-child {
-        border-bottom: 0;
-    }
+        .k-card:last-child {
+            border-bottom: 0;
+        }
 
-    .k-card .k-card-body,
-    .k-card .k-card-actions {
-        padding: 0 8px;
-    }
+        .k-card .k-card-body,
+        .k-card .k-card-actions {
+            padding: 0 8px;
+        }
 
-    .k-card .k-card-image {
-        max-width: unset;
-    }
+        .k-card .k-card-image {
+            max-width: unset;
+        }
 
     .k-card-horizontal > .k-card-image:last-child {
         border-radius: 0;
@@ -56,7 +57,7 @@
     .card-date {
         font-size: 0.85em;
         color: #bababa;
-    } 
+    }
     /* center the Carousel horizontally */
     /* k-scrollview is the default component class */
     .k-scrollview {
@@ -68,20 +69,14 @@
         position: relative;
     }
 
-    /* style the overlay text inside the Carousel */
-    .image-with-text > p {
-        position: absolute;
-        top: 1rem;
-        left: 1.6rem;
-        color: rgba(255, 255, 255, .8);
-        margin: 0;
-        font-style: italic;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, .8);
-    }
+        /* style the overlay text inside the Carousel */
+        .image-with-text > p {
+            position: absolute;
+            top: 1rem;
+            left: 1.6rem;
+            color: rgba(255, 255, 255, .8);
+            margin: 0;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, .8);
+        }
 </style>
-
-@code
-{
-    [CascadingParameter]
-    public static Notification Notification { get; set; }
-}
