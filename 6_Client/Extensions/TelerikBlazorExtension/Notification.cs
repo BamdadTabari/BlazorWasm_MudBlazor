@@ -8,6 +8,6 @@ namespace illegible.Client.Extensions.TelerikBlazorExtension
 {
     public class Notification
     {
-        public TelerikNotification Instance { get; set; }
+        public static TelerikNotification Instance { get; set; }
     }
 }

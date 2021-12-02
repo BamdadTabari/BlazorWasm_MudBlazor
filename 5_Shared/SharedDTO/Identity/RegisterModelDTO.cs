@@ -20,4 +20,11 @@ namespace illegible.Shared.SharedDto.Identity
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+    public class Terms
+    {
+        [Display(Name = "Accept Terms and Conditions?")]
+        [Required]
+        public bool AcceptTerms { get; set; }
+        public string TermsOfWebsite { get; set; }
+    }
 }
