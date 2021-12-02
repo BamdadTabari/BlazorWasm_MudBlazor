@@ -21,9 +21,7 @@ namespace illegible.Shared.SharedServices.Service
         // to get or set user token's
         private readonly ILocalStorageService _localStorage;
 
-        public AuthService(HttpClient httpClient,
-                           AuthenticationStateProvider authenticationStateProvider,
-                           ILocalStorageService localStorage)
+        public AuthService(HttpClient httpClient, AuthenticationStateProvider authenticationStateProvider, ILocalStorageService localStorage)
         {
             _httpClient = httpClient;
             _authenticationStateProvider = authenticationStateProvider;
@@ -42,7 +40,7 @@ namespace illegible.Shared.SharedServices.Service
             // as you see i'm encoding the http request with utf8
             // for more security you can do it with utf32 or something else
             var response = await _httpClient
-                .PostAsync("api/accounts", new StringContent(registerModelAsJson, Encoding.UTF8, "application/json"));
+                .PostAsync("accounts", new StringContent(registerModelAsJson, Encoding.UTF8, "application/json"));
 
             // http response is a jsonRegisterResultDto
             // then i deserialize it to  RegisterResultDto object

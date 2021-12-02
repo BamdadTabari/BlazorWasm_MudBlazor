@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace illegible.Server.Controllers.Identity
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class Accounts : ControllerBase
     {
@@ -16,12 +16,10 @@ namespace illegible.Server.Controllers.Identity
         {
             _userManager = userManager;
         }
-
         //this method get register view model 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] RegisterModelDto model)
         {
-            
             var newUser = new IdentityUser
             {
                 UserName = model.Email,

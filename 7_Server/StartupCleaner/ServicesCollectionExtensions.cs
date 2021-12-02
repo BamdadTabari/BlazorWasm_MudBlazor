@@ -1,5 +1,4 @@
-﻿using Blazored.LocalStorage;
-using illegible.DataStructure.IdentityDataContextDefine;
+﻿using illegible.DataStructure.IdentityDataContextDefine;
 using illegible.Kernel.Constants;
 using illegible.Repository.IRepository.BlogPostTablesIRepository;
 using illegible.Repository.Repository.BlogPostRepository;
@@ -7,8 +6,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Text;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 
 namespace illegible.Server.StartupCleaner
 {
@@ -32,12 +32,6 @@ namespace illegible.Server.StartupCleaner
             //            .AllowAnyMethod().SetPreflightMaxAge(TimeSpan.FromMinutes(1));
             //    });
             //});
-            #endregion
-
-            #region Repoes
-
-            services.AddScoped<IBlogPostRepository, BlogPostRepository>();
-
             #endregion
 
             #region IDentity with jwt
@@ -73,7 +67,23 @@ namespace illegible.Server.StartupCleaner
 
             #endregion
 
+            #region Autofac
+
+            services.AddAutofac();
+
+            #endregion
+
             return services;
+        }
+    }
+    /// <summary>
+    /// autoFac Containers Registration
+    /// </summary>
+    public static class ContainerSetup
+    {
+        public static void SetupContainer(ContainerBuilder builder)
+        {
+            builder.RegisterType<BlogPostRepository>().As<IBlogPostRepository>().InstancePerMatchingLifetimeScope();
         }
     }
 }

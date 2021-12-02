@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
+using Autofac;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace illegible.Server
 {
@@ -28,6 +28,10 @@ namespace illegible.Server
             services.AddConventionalService();
 
         }
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            ContainerSetup.SetupContainer(builder);
+        }
 
         // This method gets called by the runtime.
         // Use this method to configure the HTTP request pipeline.
@@ -50,11 +54,7 @@ namespace illegible.Server
                     .MaxAge(365)); // https protocol between client and server
                     //shared secure key between them is valid for 365 day
             }
-
             app.AppConfigureMethod();
-
-            
         }
-
     }
 }

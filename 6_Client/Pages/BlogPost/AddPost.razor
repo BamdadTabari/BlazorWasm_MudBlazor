@@ -59,8 +59,7 @@
     public BlogPostDto BlogPost = new BlogPostDto();
     protected async Task AddBlogPost()
     {
-        var responseMessage = await _httpRequestHandler
-            .PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
+        var responseMessage = await _httpRequestHandler.PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
         if (responseMessage.IsSuccessStatusCode)
         {
             Notification.NotificationShow("Post Added Successfully", "success", "plus-sm");

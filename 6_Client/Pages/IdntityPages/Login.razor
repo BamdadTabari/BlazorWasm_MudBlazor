@@ -1,7 +1,4 @@
 ﻿@page "/login"
-@inject IAuthService AuthService
-@inject NavigationManager NavigationManager
-<!-- todo: Refactore All Identity Pages  -->
 <h1>Login</h1>
 
 @if (ShowErrors)
@@ -14,19 +11,19 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Please enter your details</h5>
-        <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+        <EditForm Model="_loginModel" OnValidSubmit="HandleLogin">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
             <div class="form-group">
                 <label for="email">Email address</label>
-                <InputText Id="email" Class="form-control" @bind-Value="loginModel.Email" />
-                <ValidationMessage For="@(() => loginModel.Email)" />
+                <InputText Id="email" Class="form-control" @bind-Value="_loginModel.Email" />
+                <ValidationMessage For="@(() => _loginModel.Email)" />
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <InputText Id="password" type="password" Class="form-control" @bind-Value="loginModel.Password" />
-                <ValidationMessage For="@(() => loginModel.Password)" />
+                <InputText Id="password" type="password" Class="form-control" @bind-Value="_loginModel.Password" />
+                <ValidationMessage For="@(() => _loginModel.Password)" />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </EditForm>
@@ -35,7 +32,7 @@
 
 @code {
 
-    private LoginModelDto loginModel = new LoginModelDto();
+    public LoginModelDto _loginModel = new LoginModelDto();
     private bool ShowErrors;
     private string Error = "";
 
@@ -43,11 +40,11 @@
     {
         ShowErrors = false;
 
-        var result = await AuthService.Login(loginModel);
+        var result = await _authService.Login(_loginModel);
 
         if (result.Successful)
         {
-            NavigationManager.NavigateTo("/");
+            _navigationManager.NavigateTo("/");
         }
         else
         {

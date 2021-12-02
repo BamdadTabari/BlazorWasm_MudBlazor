@@ -1,6 +1,4 @@
 ﻿@page "/register"
-@inject IAuthService AuthService
-@inject NavigationManager NavigationManager
 
 <div class="IH9">
     <CascadingAuthenticationState>
@@ -87,12 +85,12 @@
     private void InitRegistration() => RegistrationEditContext = new EditContext(_registerModel);
     private async Task HandleRegistration()
     {
-        var result = await AuthService.Register(_registerModel);
+        var result = await _authService.Register(_registerModel);
         if (result.Successful)
         {
             Notification.NotificationShow("The Registration Is Completed Successfully", "success", "user");
 
-            NavigationManager.NavigateTo("/login");
+            _navigationManager.NavigateTo("/login");
         }
         else
         {

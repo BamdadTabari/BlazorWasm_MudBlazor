@@ -17,9 +17,7 @@ namespace illegible.Shared.SharedServices.Service
 
         /// <summary>
         /// this method get any Dto Type and by uriAddress connect to related api action
-        /// so it can get data as same Dto Type
-        /// i do not wanna handle programmer mistakes , just use elmah.io 
-        /// error messages are for user , not you :D
+        /// so it can sendBack data as same Dto Type
         /// </summary>
         /// <typeparam name="TDto">
         /// any Type of Object You wanna get from api action
