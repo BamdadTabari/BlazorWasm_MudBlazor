@@ -83,7 +83,7 @@ namespace illegible.Server.StartupCleaner
     {
         public static void SetupContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<BlogPostRepository>().As<IBlogPostRepository>().InstancePerMatchingLifetimeScope();
+            builder.RegisterType<BlogPostRepository>().As<IBlogPostRepository>().InstancePerDependency();
         }
     }
 }
