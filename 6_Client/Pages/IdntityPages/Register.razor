@@ -18,7 +18,6 @@
                 <WizardStep Label="Terms">
                     <Content>
                         <h2>Terms and conditions</h2>
-
                         <TelerikForm Model="@TermsModel" Orientation="FormOrientation.Horizontal">
                             <FormValidation>
                                 <DataAnnotationsValidator></DataAnnotationsValidator>
@@ -39,23 +38,16 @@
                     switch (index)
                     {
                         case 0:
-                            {
-                                <TelerikButton ButtonType="ButtonType.Button" OnClick="@OnClear">Reset Form</TelerikButton>
-                                <TelerikButton ButtonType="ButtonType.Button" Primary="true" OnClick="@(() => IndexValue += 1)">Next</TelerikButton>
-                                break;
-                            }
+                            <TelerikButton ButtonType="ButtonType.Button" OnClick="@OnClear">Reset Form</TelerikButton>
+                            <TelerikButton ButtonType="ButtonType.Button" Primary="true" OnClick="@(() => IndexValue += 1)">Next</TelerikButton>
+                            break;
                         case 1:
-                            {
-                                <TelerikButton ButtonType="ButtonType.Button" OnClick="@(() => IndexValue -= 1)">Previous</TelerikButton>
-                                <TelerikButton ButtonType="ButtonType.Submit" OnClick="@HandleRegistration">ConfirmRegistration</TelerikButton>
-                                break;
-                            }
+                            <TelerikButton ButtonType="ButtonType.Button" OnClick="@(() => IndexValue -= 1)">Previous</TelerikButton>
+                            <TelerikButton ButtonType="ButtonType.Submit" OnClick="@HandleRegistration">ConfirmRegistration</TelerikButton>
+                            break;
                         case 2:
-                            {
-                                <TelerikButton ButtonType="ButtonType.Button" OnClick="@OnClear">Reset Form</TelerikButton>
-                                break;
-                            }
-
+                            <TelerikButton ButtonType="ButtonType.Button" OnClick="@OnClear">Reset Form</TelerikButton>
+                            break;
                     }
                 }
             </WizardButtons>

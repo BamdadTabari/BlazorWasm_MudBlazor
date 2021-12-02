@@ -1,41 +1,36 @@
 ﻿@implements IDisposable
 
-<div style="padding:20px">
+<div>
     <TelerikBreadcrumb Data="@Items" Width="100%"></TelerikBreadcrumb>
 </div>
 
 @code {
-
-    [Inject] private NavigationManager NavigationManager { get; set; }
-
     public List<BreadcrumbItem> Items { get; set; }
 
     //Create a handler that will be invoked on each location change
     private void OnLocationChanged(object sender, LocationChangedEventArgs e)
     {
-        var relativeLocation = NavigationManager.ToBaseRelativePath(e.Location);
+        var relativeLocation = _navigationManager.ToBaseRelativePath(e.Location);
         SetBreadcrumbs(relativeLocation);
     }
-
     //Bind the above handler to the NavigationManager's LocationChanged event
     protected override void OnInitialized()
     {
-        NavigationManager.LocationChanged += OnLocationChanged;
-        var relativeLocation = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        _navigationManager.LocationChanged += OnLocationChanged;
+        var relativeLocation = _navigationManager.ToBaseRelativePath(_navigationManager.Uri);
 
         //Set new breadcrumb items on each invocation
         SetBreadcrumbs(relativeLocation);
 
         base.OnInitialized();
     }
-
     //Sets new breadcrumbs based on the current URL. Called on initial page load as well as on every subsequent location change
     public void SetBreadcrumbs(string relativeLocation)
     {
-        var newItems = new List<BreadcrumbItem>() { new BreadcrumbItem { Icon = "home", Url = NavigationManager.BaseUri } };
+        var newItems = new List<BreadcrumbItem>() { new BreadcrumbItem { Icon = "home", Url = _navigationManager.BaseUri } };
 
         var locationCrumbs = relativeLocation.Split('/');
-        string url = NavigationManager.BaseUri;
+        string url = _navigationManager.BaseUri;
 
         foreach (var crumb in locationCrumbs)
         {
@@ -50,13 +45,11 @@
         Items = newItems;
         StateHasChanged();
     }
-
     void IDisposable.Dispose()
     {
         // Unsubscribe from the event when disposed
-        NavigationManager.LocationChanged -= OnLocationChanged;
+        _navigationManager.LocationChanged -= OnLocationChanged;
     }
-
     public class BreadcrumbItem
     {
         public string Text { get; set; }
