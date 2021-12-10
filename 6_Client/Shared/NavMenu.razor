@@ -1,47 +1,176 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">illegible</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="AllPost">
-                <span class="oi oi-signpost" aria-hidden="true"></span> All Blog Posts
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="addBlogPost">
-                <span class="oi oi-action-redo" aria-hidden="true"></span> Add Blog Post
-            </NavLink>
-        </li>
-    </ul>
+﻿
+<div class="drawer-container">
+    <div class="custom-toolbar">
+        <TelerikButton OnClick="@ToggleDrawer" Icon="menu" Class="k-flat"></TelerikButton>
+        <span class="mail-box">Mail Box</span>
+    </div>
+    <TelerikDrawer @ref="@Drawer" Data="Data" MiniMode="true" Mode="@DrawerMode.Push" @bind-SelectedItem="SelectedItem">
+        <Content>
+        </Content>
+    </TelerikDrawer>
 </div>
 
 @code {
-    private bool collapseNavMenu = true;
+    public TelerikDrawer<DrawerItem> Drawer { get; set; }
+    public DrawerItem SelectedItem { get; set; }
+    //var aa
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    public IEnumerable<DrawerItem> Data { get; set; } =
+        new List<DrawerItem>
+        {
+            new DrawerItem
+            {
+                Text = "Home",
+                Icon = "home",
+                Url = "/"
+            },
+            new DrawerItem { Separator = true},
+            new DrawerItem
+            {
+                Text = "Notifications",
+                Icon = "notification",
+            },
+            new DrawerItem
+            {
+                Text = "Calendar",
+                Icon = "calendar",
+            },
+            new DrawerItem { Separator = true},
+            new DrawerItem
+            {
+                Text = "Attachments",
+                Icon = "hyperlink-email",
+            },
+            new DrawerItem
+            {
+                Text = "Favourites",
+                Icon = "star-outline",
+                AdditionalData = new List<(string, string)>
+        {
+                    (null, "70% Discount!"),
+                    (null, "90% Discount!"),
+                    (null, "One time offer!"),
+                }
+            }
+                };
 
-    private void ToggleNavMenu()
+    protected override Task OnInitializedAsync()
     {
-        collapseNavMenu = !collapseNavMenu;
+        SelectedItem = Data.First();
+
+        return base.OnInitializedAsync();
+    }
+
+    public async Task ToggleDrawer() => await Drawer.ToggleAsync();
+
+    public class DrawerItem
+    {
+        public string Text { get; set; }
+
+        public string Icon { get; set; }
+
+        public string Url { get; set; }
+
+        public bool Separator { get; set; }
+
+        public IEnumerable<(string, string)> AdditionalData { get; set; }
     }
 }
+
+<style>
+    .drawer-container {
+        margin: 30px auto;
+        width: 70%;
+    }
+
+    .k-drawer-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .k-icon {
+        font-size: 20px;
+    }
+
+    .custom-toolbar {
+        width: 100%;
+        background-color: #f6f6f6;
+        line-height: 10px;
+        border-bottom: inset;
+        border-bottom-width: 1px;
+        padding: 3px 8px;
+        color: #656565;
+    }
+
+    .mail-box {
+        margin-left: 20px;
+        font-weight: bold;
+        font-size: 17px;
+    }
+
+    .page ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page li {
+        font-size: 20px;
+        background: 0 0;
+        border-radius: 0;
+        border-width: 0 0 1px;
+        border-color: rgba(33, 37, 41, 0.125);
+        border-style: solid;
+        line-height: 1.5em;
+        padding: 1.09em .84em 1.23em .84em;
+    }
+
+        .page li:last-child {
+            border: 0;
+        }
+
+        .page li h6 {
+            border-bottom: none;
+            padding-bottom: 8px;
+        }
+</style>
+@*<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        <ul class="nav flex-column">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="AllPost">
+                    <span class="oi oi-signpost" aria-hidden="true"></span> All Blog Posts
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="addBlogPost">
+                    <span class="oi oi-action-redo" aria-hidden="true"></span> Add Blog Post
+                </NavLink>
+            </li>
+        </ul>
+    </div>
+
+    @code {
+        private bool collapseNavMenu = true;
+
+        private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+        private void ToggleNavMenu()
+        {
+            collapseNavMenu = !collapseNavMenu;
+        }
+    }*@
