@@ -23288,7 +23288,7 @@ kendo-drawer .k-drawer-wrapper {
 
 .k-drawer {
     height: 100%;
-    border-width: 0;
+    border-width: 1px;
     border-style: solid;
     box-sizing: border-box;
     outline: 0;
@@ -23311,7 +23311,7 @@ kendo-drawer .k-drawer-wrapper {
 .k-drawer-expanded .k-drawer.k-drawer-start,
 .k-drawer-left.k-drawer-mini .k-drawer,
 .k-drawer-left.k-drawer-expanded .k-drawer {
-    border-right-width: 1px;
+    border-right-width: 10px;
 }
 
 .k-drawer-mini .k-drawer.k-drawer-end,
@@ -23339,7 +23339,7 @@ kendo-drawer .k-drawer-wrapper {
 }
 
 .k-drawer-overlay .k-drawer {
-    max-width: 80vw;
+    max-width: max-content;
     position: fixed;
     z-index: 10002;
     border: 0;
@@ -23462,7 +23462,7 @@ kendo-drawer .k-drawer-wrapper {
 [dir="rtl"] .k-drawer-mini .k-drawer-start,
 [dir="rtl"] .k-drawer-expanded .k-drawer-start,
 [dir="rtl"].k-drawer-expanded .k-drawer-start {
-    border-left-width: 1px;
+    border-left-width: 10px;
     border-right-width: 0;
 }
 
@@ -23505,9 +23505,9 @@ kendo-drawer .k-drawer-wrapper {
 }
 
 .k-drawer {
-    border-color: #393a39;
+    border-color: black;
     color: #ffffff;
-    background-color: #202020;
+    background-color: black;
 }
 
 .k-drawer-wrapper {
@@ -23519,7 +23519,7 @@ kendo-drawer .k-drawer-wrapper {
 }
 
 .k-drawer-wrapper::-webkit-scrollbar-thumb {
-    background: rgba(156, 156, 156, 0.7);
+    background: black;
 }
 
 .k-drawer-wrapper::-webkit-scrollbar-thumb:hover {
@@ -23528,11 +23528,11 @@ kendo-drawer .k-drawer-wrapper {
 
 .k-drawer-item:hover, .k-drawer-item.k-state-hover {
     color: #ffffff;
-    background-color: #262726;
+    background-color: black;
 }
 
 .k-drawer-item:focus, .k-drawer-item.k-state-focused {
-    background-color: #202020;
+    background-color: black;
     box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.12);
 }
 

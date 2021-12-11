@@ -10,10 +10,10 @@
         <div class="top-row px-4">
             <LoginDisplay />
         </div>
-        <TelerikNotification @ref="@Notification.Instance" AnimationType="@AnimationType.PushRight" AnimationDuration="300" HorizontalPosition="@NotificationHorizontalPosition.Center" VerticalPosition="@NotificationVerticalPosition.Top" Class="big-notification">
+        <TelerikNotification @ref="@TelerikClasses.Instance" AnimationType="@AnimationType.PushRight" AnimationDuration="300" HorizontalPosition="@NotificationHorizontalPosition.Center" VerticalPosition="@NotificationVerticalPosition.Top" Class="big-notification">
         </TelerikNotification>
-        <CascadingValue IsFixed="true" Value="@Notification.Instance">
-            <div class="main">
+        <CascadingValue IsFixed="true" Value="@TelerikClasses.Instance">
+            <div class="main" style="min-height: inherit">
                 <BreadcrumbWrapper />
                 <div class="content px-4">
                     @Body

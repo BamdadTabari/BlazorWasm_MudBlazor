@@ -1,8 +1,9 @@
-﻿using Telerik.Blazor.Components;
+﻿using System.Collections.Generic;
+using Telerik.Blazor.Components;
 
 namespace illegible.Client.Extensions.TelerikBlazorExtension
 {
-    public static class Notification
+    public static class TelerikClasses
     {
         public static TelerikNotification Instance { get; set; }
 
@@ -24,5 +25,14 @@ namespace illegible.Client.Extensions.TelerikBlazorExtension
                 Icon = icon
             });
         }
+    }
+
+    public class DrawerItem
+    {
+        public string Text { get; set; }
+        public string Icon { get; set; }
+        public string Url { get; set; }
+        public bool Separator { get; set; }
+        public IEnumerable<(string, string)> AdditionalData { get; set; }
     }
 }

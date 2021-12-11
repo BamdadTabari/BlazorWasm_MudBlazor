@@ -80,13 +80,13 @@
         var result = await _authService.Register(_registerModel);
         if (result.Successful)
         {
-            Notification.NotificationShow("The Registration Is Completed Successfully", "success", "user");
+            TelerikClasses.NotificationShow("The Registration Is Completed Successfully", "success", "user");
 
             _navigationManager.NavigateTo("/login");
         }
         else
         {
-            Notification.NotificationShow("The Registration Failed", "error", "lock");
+            TelerikClasses.NotificationShow("The Registration Failed", "error", "lock");
             IndexValue = 0;
         }
     }

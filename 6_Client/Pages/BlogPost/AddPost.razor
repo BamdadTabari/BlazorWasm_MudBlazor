@@ -62,11 +62,11 @@
         var responseMessage = await _httpRequestHandler.PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
         if (responseMessage.IsSuccessStatusCode)
         {
-            Notification.NotificationShow("Post Added Successfully", "success", "plus-sm");
+            TelerikClasses.NotificationShow("Post Added Successfully", "success", "plus-sm");
         }
         else
         {
-            Notification.NotificationShow("Failed To Add Post", "error", "x");
+            TelerikClasses.NotificationShow("Failed To Add Post", "error", "x");
         }
     }
 }
