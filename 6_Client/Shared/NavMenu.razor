@@ -1,25 +1,14 @@
 ﻿<style>
-    .tetsdsyt {
-        border-left: 2px cornflowerblue solid;
-        /*position: fixed;*/
-       /* bottom: 0px;
-        right: 60px;
-        padding: 20px;*/
-    }
     .dfsdf {
         position: fixed;
         z-index: 10000;
     }
 </style>
-<div class="drawer-container IH10 tetsdsyt IBGNewBlush" >
-    <div class="text-center" style="border-top: 2px cornflowerblue solid;">
-        <TelerikButton OnClick="@ToggleDrawer" Icon="menu" Class="k-flat"></TelerikButton>
-    </div>
+<div class="drawer-container IH10 IBGNewBlush" >
     <div class="dfsdf IH10">
+        <TelerikButton OnClick="@ToggleDrawer" Icon="menu" Class="k-flat"></TelerikButton>
         <TelerikDrawer @ref="@Drawer" Data="Data" MiniMode="true"
                        Mode="@DrawerMode.Push" @bind-SelectedItem="SelectedItem">
-            @*<Content>
-        </Content>*@
         </TelerikDrawer>
     </div>
 </div>
