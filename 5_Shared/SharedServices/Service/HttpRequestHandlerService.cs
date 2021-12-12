@@ -30,7 +30,6 @@ namespace illegible.Shared.SharedServices.Service
             return await _httpClient.GetFromJsonAsync<TDto>(uriAddress);
         }
 
-        // handle http req and automatic convert and send Dto to json
         /// <summary>
         /// ok with this you can post any object to any api action
         /// should use when wanna add a single line in specific table of dataBase
@@ -43,6 +42,11 @@ namespace illegible.Shared.SharedServices.Service
             return await _httpClient.PostAsJsonAsync(uriAddress, Dto);
         }
 
-
+        
+        public async Task<TDto> GetByIdAsHttpAsync<TDto>(long id, string uriAddress)
+        {
+            var aa = await _httpClient.PostAsJsonAsync(uriAddress, id);
+            return await _httpClient.GetFromJsonAsync<TDto>(uriAddress); ;
+        }
     }
 }

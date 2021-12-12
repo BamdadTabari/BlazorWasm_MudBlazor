@@ -8,5 +8,6 @@ namespace illegible.Shared.SharedServices.IService
     {
         Task<HttpResponseMessage> PostAsHttpJsonAsync(object Dto ,string uriAddress);
         Task<TDto> GetAsHttpAsync<TDto>(string uriAddress);
+        Task<TDto> GetByIdAsHttpAsync<TDto>(long id,string uriAddress);
     }
 }

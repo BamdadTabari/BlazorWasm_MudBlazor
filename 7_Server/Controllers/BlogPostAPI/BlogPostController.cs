@@ -25,8 +25,8 @@ namespace illegible.Server.Controllers.BlogPostAPI
             _userManager = userManager;
         }
 
-        [HttpPost]
-        [Route("AddBlogPost")]
+        [HttpPost,AutoValidateAntiforgeryToken]
+        [Route("[action]")]
         public async Task AddBlogPost([FromBody] BlogPostDto blogPostDto)
         {
 
@@ -36,12 +36,21 @@ namespace illegible.Server.Controllers.BlogPostAPI
         }
 
         [HttpGet]
-        [Route("GetAllBlogPost")]
+        [Route("[action]")]
         public async Task<IActionResult> GetAllBlogPost()
         {
             var blogPostList = await _blogPostRepository.GetAllBlogPostAsync();
             var blogPostDtoList = _mapper.Map<IEnumerable<BlogPostDto>>(blogPostList);
             return Ok(blogPostDtoList);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> GetBlogPost(long postId)
+        {
+            var blogPost = await _blogPostRepository.GetBlogPostByIdAsync(postId);
+            var blogPostDto = _mapper.Map<BlogPostDto>(blogPost);
+            return Ok(blogPostDto);
         }
     }
 }

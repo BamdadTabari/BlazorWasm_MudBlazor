@@ -1,0 +1,30 @@
+﻿<div class="container">
+    <div class="row IBorder1 IBGCpeachpuff IBGOpacity80">
+        <h2 class="ITalignCenter">@BlogPostDto.Title</h2>
+    </div>
+    <div class="IBorder3 row ">
+        <p class="ITalignCenter">
+            @BlogPostDto.PostContext
+        </p>
+    </div>
+    <div class="row IBorder1 IBGCpeachpuff IBGOpacity80">
+        <small class="col-4">
+            @BlogPostDto.Author
+        </small>
+        <small class="col-4">
+            @BlogPostDto.WriteTime
+        </small>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public long PostId { get; set; }
+
+    protected BlogPostDto BlogPostDto = new BlogPostDto();
+
+    protected override async Task OnInitializedAsync()
+    {
+        BlogPostDto = await _httpRequestHandler
+        .GetByIdAsHttpAsync<BlogPostDto>(PostId, "BlogPost/GetBlogPost");
+    }
+}
