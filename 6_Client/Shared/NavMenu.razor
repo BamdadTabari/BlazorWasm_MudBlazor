@@ -1,11 +1,5 @@
-﻿<style>
-    .dfsdf {
-        position: fixed;
-        z-index: 10000;
-    }
-</style>
-<div class="drawer-container IH10 IBGNewBlush" >
-    <div class="dfsdf IH10">
+﻿<div class="drawer-container IH10">
+    <div class="IPositionFix">
         <TelerikButton OnClick="@ToggleDrawer" Icon="menu" Class="k-flat"></TelerikButton>
         <TelerikDrawer @ref="@Drawer" Data="Data" MiniMode="true"
                        Mode="@DrawerMode.Push" @bind-SelectedItem="SelectedItem">
@@ -42,29 +36,29 @@
                 Icon = "calendar",
                 Url = "/addBlogPost"
             },
-            //new DrawerItem { Separator = true},
-            //new DrawerItem
-            //{
-            //    Text = "LogOut",
-            //    Icon = "calendar",
-            //    Url = "/LogOut"
-            //},
-            //new DrawerItem { Separator = true},
-            //new DrawerItem
-            //{
-            //    Text = "Login",
-            //    Icon = "calendar",
-            //    Url = "/Login"
-            //},
-            //new DrawerItem { Separator = true},
-            //new DrawerItem
-            //{
-            //    Text = "Register",
-            //    Icon = "calendar",
-            //    Url = "/Register"
-            //},
-            //new DrawerItem { Separator = true}
-        };
+                //new DrawerItem { Separator = true},
+                //new DrawerItem
+                //{
+                //    Text = "LogOut",
+                //    Icon = "calendar",
+                //    Url = "/LogOut"
+                //},
+                //new DrawerItem { Separator = true},
+                //new DrawerItem
+                //{
+                //    Text = "Login",
+                //    Icon = "calendar",
+                //    Url = "/Login"
+                //},
+                //new DrawerItem { Separator = true},
+                //new DrawerItem
+                //{
+                //    Text = "Register",
+                //    Icon = "calendar",
+                //    Url = "/Register"
+                //},
+                //new DrawerItem { Separator = true}
+            };
 
     #endregion
 
