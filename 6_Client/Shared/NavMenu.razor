@@ -1,19 +1,33 @@
 ﻿<style>
     .tetsdsyt {
-        border-left: 2px cornflowerblue solid
+        border-left: 2px cornflowerblue solid;
+        /*position: fixed;*/
+       /* bottom: 0px;
+        right: 60px;
+        padding: 20px;*/
+    }
+    .dfsdf {
+        position: fixed;
+        z-index: 10000;
     }
 </style>
-<div class="drawer-container IH10 tetsdsyt" >
-    <div class="text-center" style="border-top: 2px cornflowerblue solid">
+<div class="drawer-container IH10 tetsdsyt IBGNewBlush" >
+    <div class="text-center" style="border-top: 2px cornflowerblue solid;">
         <TelerikButton OnClick="@ToggleDrawer" Icon="menu" Class="k-flat"></TelerikButton>
     </div>
-    <TelerikDrawer @ref="@Drawer" Data="Data" MiniMode="true" Mode="@DrawerMode.Push" @bind-SelectedItem="SelectedItem">
-        @*<Content>
+    <div class="dfsdf IH10">
+        <TelerikDrawer @ref="@Drawer" Data="Data" MiniMode="true"
+                       Mode="@DrawerMode.Push" @bind-SelectedItem="SelectedItem">
+            @*<Content>
         </Content>*@
-    </TelerikDrawer>
+        </TelerikDrawer>
+    </div>
 </div>
 
 @code {
+
+    #region Drawer Data
+
     public TelerikDrawer<DrawerItem> Drawer { get; set; }
     public DrawerItem SelectedItem { get; set; }
     public IEnumerable<DrawerItem> Data { get; set; } =
@@ -32,30 +46,40 @@
                 Icon = "notification",
                 Url = "/AllPost"
             },
+            new DrawerItem { Separator = true},
             new DrawerItem
             {
                 Text = "addBlogPost",
                 Icon = "calendar",
                 Url = "/addBlogPost"
             },
-            new DrawerItem { Separator = true},
-                //new DrawerItem
-                //{
-                //    Text = "Attachments",
-                //    Icon = "hyperlink-email",
-                //},
-                //new DrawerItem
-                //{
-                //    Text = "Favourites",
-                //    Icon = "star-outline",
-                //    AdditionalData = new List<(string, string)>
-                //{
-                //        (null, "70% Discount!"),
-                //        (null, "90% Discount!"),
-                //        (null, "One time offer!"),
-                //    }
-                //}
-            };
+            //new DrawerItem { Separator = true},
+            //new DrawerItem
+            //{
+            //    Text = "LogOut",
+            //    Icon = "calendar",
+            //    Url = "/LogOut"
+            //},
+            //new DrawerItem { Separator = true},
+            //new DrawerItem
+            //{
+            //    Text = "Login",
+            //    Icon = "calendar",
+            //    Url = "/Login"
+            //},
+            //new DrawerItem { Separator = true},
+            //new DrawerItem
+            //{
+            //    Text = "Register",
+            //    Icon = "calendar",
+            //    Url = "/Register"
+            //},
+            //new DrawerItem { Separator = true}
+        };
+
+    #endregion
+
+    #region Drawer Methods
 
     protected override Task OnInitializedAsync()
     {
@@ -65,4 +89,6 @@
     }
 
     public async Task ToggleDrawer() => await Drawer.ToggleAsync();
+
+    #endregion
 }

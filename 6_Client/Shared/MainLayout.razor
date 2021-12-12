@@ -7,9 +7,6 @@
     </div>
 
     <div class="main">
-        <div class="top-row px-4">
-            <LoginDisplay />
-        </div>
         <TelerikNotification @ref="@TelerikClasses.Instance" AnimationType="@AnimationType.PushRight" AnimationDuration="300" HorizontalPosition="@NotificationHorizontalPosition.Center" VerticalPosition="@NotificationVerticalPosition.Top" Class="big-notification">
         </TelerikNotification>
         <CascadingValue IsFixed="true" Value="@TelerikClasses.Instance">
