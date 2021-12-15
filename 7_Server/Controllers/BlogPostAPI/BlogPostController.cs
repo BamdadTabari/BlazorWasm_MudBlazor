@@ -5,15 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-
+using System.Text.Json;
 
 namespace illegible.Server.Controllers.BlogPostAPI
 {
-    [Route("[controller]")]
+    [Route("BlogPost")]
     [ApiController]
     public class BlogPost : ControllerBase
     {
-
         private readonly IBlogPostRepository _blogPostRepository;
         private readonly IMapper _mapper;
         private readonly UserManager<IdentityUser> _userManager;
@@ -26,27 +25,27 @@ namespace illegible.Server.Controllers.BlogPostAPI
         }
 
         [HttpPost,AutoValidateAntiforgeryToken]
-        [Route("[action]")]
+        [Route("/AddBlogPost")]
         public async Task AddBlogPost([FromBody] BlogPostDto blogPostDto)
         {
-
             blogPostDto.Author = _userManager.GetUserName(User);
             var blogPost = _mapper.Map<Entity.BlogEntity.Post.BlogPost>(blogPostDto);
             await _blogPostRepository.AddBlogPostAsync(blogPost);
         }
 
         [HttpGet]
-        [Route("[action]")]
+        [Route("/GetAllBlogPost")]
         public async Task<IActionResult> GetAllBlogPost()
         {
             var blogPostList = await _blogPostRepository.GetAllBlogPostAsync();
             var blogPostDtoList = _mapper.Map<IEnumerable<BlogPostDto>>(blogPostList);
-            return Ok(blogPostDtoList);
+            var registerModelAsJson = JsonSerializer.Serialize(blogPostDtoList);
+            return new JsonResult(registerModelAsJson);
         }
 
         [HttpGet]
-        [Route("[action]")]
-        public async Task<IActionResult> GetBlogPost(long postId)
+        [Route("/GetBlogPost/{postId}")]
+        public async Task<IActionResult> GetBlogPost([FromRoute]long postId)
         {
             var blogPost = await _blogPostRepository.GetBlogPostByIdAsync(postId);
             var blogPostDto = _mapper.Map<BlogPostDto>(blogPost);

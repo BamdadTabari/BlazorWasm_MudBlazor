@@ -1,6 +1,5 @@
 ﻿@page "/AllPost"
 
-
 <div >
     <TelerikListView Data="@BlogPostDtoList" Width="100%" Pageable="true">
         <HeaderTemplate>
@@ -15,10 +14,9 @@
                         <div class="card-date">@context.WriteTime.ToString("MMM dd yyyy")</div>
                         <p>Summary: @context.Summary</p>
                     </div>
-                    @*<div class="k-card-actions k-card-actions-horizontal k-card-actions-start">
-                        <ListViewCommandButton OnClick="@SaveForLater" Enabled="@(!SavedArticles.Contains(context))" Class="k-flat">Save for later</ListViewCommandButton>
-                        <ListViewCommandButton OnClick="@AddFavorite" Enabled="@(!Favorites.Contains(context))" Class="k-flat">Add to favorites</ListViewCommandButton>
-                    </div>*@
+                    <div class="k-card-actions k-card-actions-horizontal k-card-actions-start">
+                        <ListViewCommandButton OnClick="@(args => SeePost(context.Id))" Class="k-flat IBGCaqua">See Post</ListViewCommandButton>
+                    </div>
                 </div>
                 <img class="k-card-image" src="@context.PostImageUrl" />
             </div>
@@ -27,13 +25,14 @@
 </div>
 
 @code {
-
-    protected List<BlogPostDto> BlogPostDtoList = new List<BlogPostDto>();
-
+    protected IEnumerable<BlogPostDto> BlogPostDtoList;
     protected override async Task OnInitializedAsync()
     {
         BlogPostDtoList = await _httpRequestHandler
-        .GetAsHttpAsync<List<BlogPostDto>>("BlogPost/GetAllBlogPost");
+        .GetAsHttpAsync<IEnumerable<BlogPostDto>>("BlogPost/GetAllBlogPost");
     }
-
+    void SeePost(long? id)
+    {
+        _navigationManager.NavigateTo($"/Post/{id}");
+    }
 }

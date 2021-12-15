@@ -1,8 +1,10 @@
 ﻿using illegible.Shared.SharedDto.BlogPost;
 using illegible.Shared.SharedServices.IService;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace illegible.Shared.SharedServices.Service
@@ -10,9 +12,12 @@ namespace illegible.Shared.SharedServices.Service
     public class HttpRequestHandlerService : IHttpRequestHandlerService
     {
         private readonly HttpClient _httpClient;
+        private readonly JsonSerializerOptions _options;
+        
         public HttpRequestHandlerService(HttpClient httpClient)
         {
             _httpClient = httpClient;
+            _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         }
 
         /// <summary>
@@ -27,7 +32,14 @@ namespace illegible.Shared.SharedServices.Service
         /// <returns></returns>
         public async Task<TDto> GetAsHttpAsync<TDto>(string uriAddress)
         {
-            return await _httpClient.GetFromJsonAsync<TDto>(uriAddress);
+            var response = await _httpClient.GetAsync(uriAddress);
+            var content = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new ApplicationException(content);
+            }
+            var dataAsDto = JsonSerializer.Deserialize<TDto>(content, _options);
+            return dataAsDto;
         }
 
         /// <summary>

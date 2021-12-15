@@ -1,4 +1,6 @@
-﻿<div class="container">
+﻿@page "/Post/{PostId:long}"
+
+<div class="container">
     <div class="row IBorder1 IBGCpeachpuff IBGOpacity80">
         <h2 class="ITalignCenter">@BlogPostDto.Title</h2>
     </div>
@@ -24,7 +26,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        BlogPostDto = await _httpRequestHandler
-        .GetByIdAsHttpAsync<BlogPostDto>(PostId, "BlogPost/GetBlogPost");
+        BlogPostDto = await _httpRequestHandler.GetAsHttpAsync<BlogPostDto>($"BlogPost/GetBlogPost/{PostId}");
     }
 }
