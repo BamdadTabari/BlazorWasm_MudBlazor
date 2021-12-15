@@ -1,6 +1,6 @@
 ﻿@page "/AllPost"
-
-<div >
+@inject HttpClient Http
+<div>
     <TelerikListView Data="@BlogPostDtoList" Width="100%" Pageable="true">
         <HeaderTemplate>
             <h2>Last Posts:</h2>
@@ -25,11 +25,10 @@
 </div>
 
 @code {
-    protected IEnumerable<BlogPostDto> BlogPostDtoList;
+    private BlogPostDto[] BlogPostDtoList;
     protected override async Task OnInitializedAsync()
     {
-        BlogPostDtoList = await _httpRequestHandler
-        .GetAsHttpAsync<IEnumerable<BlogPostDto>>("BlogPost/GetAllBlogPost");
+        BlogPostDtoList = await Http.GetFromJsonAsync<BlogPostDto[]>("BlogPost/GetAllBlogPost");
     }
     void SeePost(long? id)
     {

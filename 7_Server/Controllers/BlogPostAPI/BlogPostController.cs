@@ -24,8 +24,7 @@ namespace illegible.Server.Controllers.BlogPostAPI
             _userManager = userManager;
         }
 
-        [HttpPost,AutoValidateAntiforgeryToken]
-        [Route("/AddBlogPost")]
+        [HttpPost("AddBlogPost"),AutoValidateAntiforgeryToken]
         public async Task AddBlogPost([FromBody] BlogPostDto blogPostDto)
         {
             blogPostDto.Author = _userManager.GetUserName(User);
@@ -33,23 +32,20 @@ namespace illegible.Server.Controllers.BlogPostAPI
             await _blogPostRepository.AddBlogPostAsync(blogPost);
         }
 
-        [HttpGet]
-        [Route("/GetAllBlogPost")]
-        public async Task<IActionResult> GetAllBlogPost()
+        [HttpGet("GetAllBlogPost")]
+        public async Task<IEnumerable<BlogPostDto>> GetAllBlogPost()
         {
             var blogPostList = await _blogPostRepository.GetAllBlogPostAsync();
             var blogPostDtoList = _mapper.Map<IEnumerable<BlogPostDto>>(blogPostList);
-            var registerModelAsJson = JsonSerializer.Serialize(blogPostDtoList);
-            return new JsonResult(registerModelAsJson);
+            return blogPostDtoList;
         }
 
-        [HttpGet]
-        [Route("/GetBlogPost/{postId}")]
-        public async Task<IActionResult> GetBlogPost([FromRoute]long postId)
+        [HttpGet("GetBlogPost/{postId}")]
+        public async Task<BlogPostDto> GetBlogPost([FromRoute]long postId)
         {
             var blogPost = await _blogPostRepository.GetBlogPostByIdAsync(postId);
             var blogPostDto = _mapper.Map<BlogPostDto>(blogPost);
-            return Ok(blogPostDto);
+            return blogPostDto;
         }
     }
 }
