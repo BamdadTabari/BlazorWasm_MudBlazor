@@ -29,28 +29,3 @@
         </EditForm>
     </div>
 </div>
-
-@code {
-
-    public LoginModelDto _loginModel = new LoginModelDto();
-    private bool ShowErrors;
-    private string Error = "";
-
-    private async Task HandleLogin()
-    {
-        ShowErrors = false;
-
-        var result = await _authService.Login(_loginModel);
-
-        if (result.Successful)
-        {
-            _navigationManager.NavigateTo("/");
-        }
-        else
-        {
-            Error = result.Error;
-            ShowErrors = true;
-        }
-    }
-
-}

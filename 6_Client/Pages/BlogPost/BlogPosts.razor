@@ -1,5 +1,5 @@
 ﻿@page "/AllPost"
-@inject HttpClient Http
+
 <div>
     <TelerikListView Data="@BlogPostDtoList" Width="100%" Pageable="true">
         <HeaderTemplate>
@@ -23,15 +23,3 @@
         </Template>
     </TelerikListView>
 </div>
-
-@code {
-    private BlogPostDto[] BlogPostDtoList;
-    protected override async Task OnInitializedAsync()
-    {
-        BlogPostDtoList = await Http.GetFromJsonAsync<BlogPostDto[]>("BlogPost/GetAllBlogPost");
-    }
-    void SeePost(long? id)
-    {
-        _navigationManager.NavigateTo($"/Post/{id}");
-    }
-}

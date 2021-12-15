@@ -54,19 +54,3 @@
         </CascadingAuthenticationState>
     </div>
 </div>
-
-@code {
-    public BlogPostDto BlogPost = new BlogPostDto();
-    protected async Task AddBlogPost()
-    {
-        var responseMessage = await _httpRequestHandler.PostAsHttpJsonAsync(BlogPost, "BlogPost/AddBlogPost");
-        if (responseMessage.IsSuccessStatusCode)
-        {
-            TelerikClasses.NotificationShow("Post Added Successfully", "success", "plus-sm");
-        }
-        else
-        {
-            TelerikClasses.NotificationShow("Failed To Add Post", "error", "x");
-        }
-    }
-}

@@ -1,13 +1,5 @@
 ﻿@page "/logout"
-@inject IAuthService AuthService
-@inject NavigationManager NavigationManager
 
-@code {
 
-    protected override async Task OnInitializedAsync()
-    {
-        await AuthService.Logout();
-        NavigationManager.NavigateTo("/");
-    }
-
-}
+@* todo: dialog to get shure of user logout *@
+@* todo: asking for killing user session *@
