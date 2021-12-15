@@ -31,6 +31,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "illegible.Client", "6_Clien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "illegible.Server", "7_Server\illegible.Server.csproj", "{24AD129D-8EDA-4D1A-9E23-87E03039DE38}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8.Test", "8.Test", "{5E2145B6-F582-4953-8319-CFA6CB5A7F63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "illegible.Test", "8_illegible.XUnitTest\illegible.Test\illegible.Test.csproj", "{FCFD42EC-D8A0-45BB-AF15-142BC0B56F6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +69,10 @@ Global
 		{24AD129D-8EDA-4D1A-9E23-87E03039DE38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24AD129D-8EDA-4D1A-9E23-87E03039DE38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24AD129D-8EDA-4D1A-9E23-87E03039DE38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCFD42EC-D8A0-45BB-AF15-142BC0B56F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCFD42EC-D8A0-45BB-AF15-142BC0B56F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCFD42EC-D8A0-45BB-AF15-142BC0B56F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCFD42EC-D8A0-45BB-AF15-142BC0B56F6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +85,7 @@ Global
 		{BDCBF00B-172B-4EF9-BAAF-60E390BEFC44} = {EFF1107A-3425-4E5D-A715-6B6CC1A35F20}
 		{717B25C4-0A94-4A1E-ADA4-B002F33FE6E5} = {A3461AF3-ECB1-4F34-9331-6B638DD3ABA3}
 		{24AD129D-8EDA-4D1A-9E23-87E03039DE38} = {CA8F7A88-4780-48C3-86D2-E798C57E0E02}
+		{FCFD42EC-D8A0-45BB-AF15-142BC0B56F6F} = {5E2145B6-F582-4953-8319-CFA6CB5A7F63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AABE0B94-268D-4405-99D5-9356ECC8354A}

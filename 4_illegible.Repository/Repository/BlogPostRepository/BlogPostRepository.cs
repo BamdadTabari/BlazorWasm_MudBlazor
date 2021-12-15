@@ -25,6 +25,11 @@ namespace illegible.Repository.Repository.BlogPostRepository
             return entity.Id;
         }
 
+        public List<BlogPost> GetAllBlogPost()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Task<List<BlogPost>> GetAllBlogPostAsync()
         {
             return _blogPost.ToListAsync();

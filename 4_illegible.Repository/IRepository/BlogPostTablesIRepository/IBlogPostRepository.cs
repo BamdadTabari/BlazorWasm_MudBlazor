@@ -9,5 +9,6 @@ namespace illegible.Repository.IRepository.BlogPostTablesIRepository
         Task<long> AddBlogPostAsync(BlogPost entity);
         Task<BlogPost> GetBlogPostByIdAsync(long id);
         Task<List<BlogPost>> GetAllBlogPostAsync();
+        List<BlogPost> GetAllBlogPost();
     }
 }
