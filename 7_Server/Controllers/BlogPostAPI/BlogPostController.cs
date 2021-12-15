@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using System.Text.Json;
 
 namespace illegible.Server.Controllers.BlogPostAPI
 {

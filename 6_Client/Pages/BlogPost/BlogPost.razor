@@ -21,9 +21,7 @@
 @code {
     [Parameter]
     public long PostId { get; set; }
-
     protected BlogPostDto BlogPostDto = new BlogPostDto();
-
     protected override async Task OnInitializedAsync()
     {
         BlogPostDto = await _httpRequestHandler.GetAsHttpAsync<BlogPostDto>($"BlogPost/GetBlogPost/{PostId}");
