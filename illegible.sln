@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "illegible.Server", "7_Serve
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8.Test", "8.Test", "{5E2145B6-F582-4953-8319-CFA6CB5A7F63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "illegible.Test", "8_illegible.XUnitTest\illegible.Test\illegible.Test.csproj", "{FCFD42EC-D8A0-45BB-AF15-142BC0B56F6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "illegible.Test", "8_illegible.XUnitTest\illegible.Test\illegible.Test.csproj", "{FCFD42EC-D8A0-45BB-AF15-142BC0B56F6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

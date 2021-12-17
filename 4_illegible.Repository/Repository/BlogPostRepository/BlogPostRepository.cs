@@ -1,5 +1,7 @@
 ﻿using illegible.DataStructure.DataContextDefine;
 using illegible.Entity.BlogEntity.Post;
+using illegible.Kernel.Paging;
+using illegible.Kernel.RequestFeatures;
 using illegible.Repository.IRepository.BlogPostTablesIRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -40,5 +42,11 @@ namespace illegible.Repository.Repository.BlogPostRepository
             return _blogPost.FirstOrDefaultAsync(b => b.Id == id);
         }
 
+
+        public async Task<PagedList<BlogPost>> GetPagingPost(PagingParameters pagingParameters)
+        {
+            var posts = await _blogPost.ToListAsync();
+            return PagedList<BlogPost>.ToPagedList(posts, pagingParameters.PageNumber, pagingParameters.PageSize);
+        }
     }
 }

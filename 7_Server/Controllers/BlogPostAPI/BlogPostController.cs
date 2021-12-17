@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using illegible.Kernel.RequestFeatures;
+using Newtonsoft.Json;
 
 namespace illegible.Server.Controllers.BlogPostAPI
 {
@@ -45,6 +47,13 @@ namespace illegible.Server.Controllers.BlogPostAPI
             var blogPost = await _blogPostRepository.GetBlogPostByIdAsync(postId);
             var blogPostDto = _mapper.Map<BlogPostDto>(blogPost);
             return blogPostDto;
+        }
+        [HttpGet("GetPagedBlogPosts")]
+        public async Task<IActionResult> GetPagedBlogPosts([FromQuery] PagingParameters pagingParameters)
+        {
+            var products = await _blogPostRepository.GetPagingPost(pagingParameters);
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.MetaData));
+            return Ok(products);
         }
     }
 }
