@@ -32,6 +32,14 @@ namespace illegible.Server.StartupCleaner
             //            .AllowAnyMethod().SetPreflightMaxAge(TimeSpan.FromMinutes(1));
             //    });
             //});
+            services.AddCors(policy =>
+            {
+                policy.AddPolicy("IllegibleCors", opt => opt
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .WithExposedHeaders("X-Pagination"));
+            });
             #endregion
 
             #region IDentity with jwt

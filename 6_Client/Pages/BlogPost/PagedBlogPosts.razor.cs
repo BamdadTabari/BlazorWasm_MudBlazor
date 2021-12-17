@@ -12,8 +12,8 @@ namespace illegible.Client.Pages.BlogPost
         private PagedList<BlogPost> BlogPostDtoList;
         protected override async Task OnInitializedAsync()
         {
-            BlogPostDtoList = await Http.GetFromJsonAsync<PagedList<BlogPost>>("BlogPost/GetPagedBlogPosts");
-            var aa = BlogPostDtoList;
+            var bb = await Http.GetAsync("BlogPost/GetPagedBlogPosts");
+            var aa = bb;
         }
         void SeePost(long? id)
         {
