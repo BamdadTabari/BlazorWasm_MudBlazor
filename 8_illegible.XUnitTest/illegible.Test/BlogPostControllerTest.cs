@@ -10,6 +10,7 @@ using Xunit;
 
 namespace illegible.Test
 {
+    //todo: it's not complete
     public class BlogPostControllerTest : IClassFixture<ControllerFixture>
     {
         BlogPost blogController;
