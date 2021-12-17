@@ -26,9 +26,6 @@ namespace illegible.Shared.SharedDto.BlogPost
         [Url]
         public string PostVideoUrl { get; set; }
 
-        [Url]
-        public string PostAttachedFileUrl { get; set; }
-
         public AttachedLinkType AttachedLinkTypeEnum { get; set; }
 
         [Url]
