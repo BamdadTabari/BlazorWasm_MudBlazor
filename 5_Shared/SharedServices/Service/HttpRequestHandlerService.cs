@@ -1,7 +1,11 @@
-﻿using illegible.Shared.SharedDto.BlogPost;
+﻿using illegible.Kernel.Paging;
+using illegible.Kernel.RequestFeatures;
+using illegible.Shared.SharedDto.BlogPost;
 using illegible.Shared.SharedServices.IService;
+using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -60,5 +64,26 @@ namespace illegible.Shared.SharedServices.Service
             var aa = await _httpClient.PostAsJsonAsync(uriAddress, id);
             return await _httpClient.GetFromJsonAsync<TDto>(uriAddress); ;
         }
+
+        public async Task<PagingResponse<object>> GetPagedData(PagingParameters pagingParameters, string uriAddress)
+        {
+            var queryStringParam = new Dictionary<string, string>
+            {
+                ["pageNumber"] = pagingParameters.PageNumber.ToString()
+            };
+            var response = await _httpClient.GetAsync(QueryHelpers.AddQueryString("products", queryStringParam));
+            var content = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new ApplicationException(content);
+            }
+            var pagingResponse = new PagingResponse<object>
+            {
+                Items = JsonSerializer.Deserialize<List<object>>(content, _options),
+                MetaData = JsonSerializer.Deserialize<MetaData>(response.Headers.GetValues("X-Pagination").First(), _options)
+            };
+            return pagingResponse;
+        }
+
     }
 }

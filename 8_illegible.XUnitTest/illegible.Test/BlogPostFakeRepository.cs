@@ -1,4 +1,6 @@
 ﻿using illegible.Entity.BlogEntity.Post;
+using illegible.Kernel.Paging;
+using illegible.Kernel.RequestFeatures;
 using illegible.Repository.IRepository.BlogPostTablesIRepository;
 using System;
 using System.Collections.Generic;
@@ -64,6 +66,11 @@ namespace illegible.Test
         }
 
         public Task<BlogPost> GetBlogPostByIdAsync(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PagedList<BlogPost>> GetPagingPost(PagingParameters pagingParameters)
         {
             throw new NotImplementedException();
         }
