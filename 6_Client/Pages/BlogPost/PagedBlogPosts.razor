@@ -1,3 +1,19 @@
 ﻿@page "/PagedBlogPosts"
-<h3>PagedBlogPosts</h3>
-
+<div class="row">
+    <div class="col-md-10">
+        @*Place for search and sort*@
+    </div>
+    <div class="col-md-2">
+        <a href="/createProduct">Create Product</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <PostTable BlogPosts="blogPosts" />
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <Pagination MetaData="metaData" Spread="2" SelectedPage="SelectedPage" />
+    </div>
+</div>

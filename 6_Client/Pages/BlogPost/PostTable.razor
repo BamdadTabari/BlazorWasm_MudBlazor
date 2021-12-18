@@ -1,0 +1,46 @@
+﻿@if (BlogPosts.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Title</th>
+                <th scope="col">Summary</th>
+                <th scope="col">Author</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blogPost in BlogPosts)
+            {
+                <tr>
+                    <td>
+                        <img src="@blogPost.PostImageUrl" alt="product image" style="width:100px;" />
+                    </td>
+                    <td class="align-middle">
+                        @blogPost.Title
+                    </td>
+                    <td class="align-middle">
+                        @blogPost.Summary
+                    </td>
+                    <td class="align-middle">
+                        $@blogPost.Author
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-info">Update</button>
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <span>
+        Loading products...
+    </span>
+}

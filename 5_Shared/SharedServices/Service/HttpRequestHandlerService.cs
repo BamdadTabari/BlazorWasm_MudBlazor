@@ -1,4 +1,5 @@
-﻿using illegible.Kernel.Paging;
+﻿using illegible.Entity.BlogEntity.Post;
+using illegible.Kernel.Paging;
 using illegible.Kernel.RequestFeatures;
 using illegible.Shared.SharedDto.BlogPost;
 using illegible.Shared.SharedServices.IService;
@@ -65,21 +66,21 @@ namespace illegible.Shared.SharedServices.Service
             return await _httpClient.GetFromJsonAsync<TDto>(uriAddress); ;
         }
 
-        public async Task<PagingResponse<object>> GetPagedData(PagingParameters pagingParameters, string uriAddress)
+        public async Task<PagingResponse<BlogPost>> GetPagedData(PagingParameters pagingParameters, string uriAddress)
         {
             var queryStringParam = new Dictionary<string, string>
             {
                 ["pageNumber"] = pagingParameters.PageNumber.ToString()
             };
-            var response = await _httpClient.GetAsync(QueryHelpers.AddQueryString("products", queryStringParam));
+            var response = await _httpClient.GetAsync(QueryHelpers.AddQueryString(uriAddress, queryStringParam));
             var content = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
                 throw new ApplicationException(content);
             }
-            var pagingResponse = new PagingResponse<object>
+            var pagingResponse = new PagingResponse<BlogPost>
             {
-                Items = JsonSerializer.Deserialize<List<object>>(content, _options),
+                Items = JsonSerializer.Deserialize<List<BlogPost>>(content, _options),
                 MetaData = JsonSerializer.Deserialize<MetaData>(response.Headers.GetValues("X-Pagination").First(), _options)
             };
             return pagingResponse;
