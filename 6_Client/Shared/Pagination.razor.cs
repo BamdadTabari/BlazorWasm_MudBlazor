@@ -10,7 +10,7 @@ namespace illegible.Client.Shared
     public partial class Pagination
     {
         [Parameter]
-        public MetaData MetaData { get; set; }
+        public MetaData MetaDataParameter { get; set; }
         [Parameter]
         public int Spread { get; set; }
         [Parameter]
@@ -27,25 +27,25 @@ namespace illegible.Client.Shared
         {
             _links = new List<PagingLink>();
 
-            _links.Add(new PagingLink(MetaData.CurrentPage - 1, MetaData.HasPrevious, "Previous"));
+            _links.Add(new PagingLink(MetaDataParameter.CurrentPage - 1, MetaDataParameter.HasPrevious, "Previous"));
 
-            for (int i = 1; i <= MetaData.TotalPages; i++)
+            for (int i = 1; i <= MetaDataParameter.TotalPages; i++)
             {
-                if (i >= MetaData.CurrentPage - Spread && i <= MetaData.CurrentPage + Spread)
+                if (i >= MetaDataParameter.CurrentPage - Spread && i <= MetaDataParameter.CurrentPage + Spread)
                 {
-                    _links.Add(new PagingLink(i, true, i.ToString()) { Active = MetaData.CurrentPage == i });
+                    _links.Add(new PagingLink(i, true, i.ToString()) { Active = MetaDataParameter.CurrentPage == i });
                 }
             }
 
-            _links.Add(new PagingLink(MetaData.CurrentPage + 1, MetaData.HasNext, "Next"));
+            _links.Add(new PagingLink(MetaDataParameter.CurrentPage + 1, MetaDataParameter.HasNext, "Next"));
         }
 
         private async Task OnSelectedPage(PagingLink link)
         {
-            if (link.Page == MetaData.CurrentPage || !link.Enabled)
+            if (link.Page == MetaDataParameter.CurrentPage || !link.Enabled)
                 return;
 
-            MetaData.CurrentPage = link.Page;
+            MetaDataParameter.CurrentPage = link.Page;
             await SelectedPage.InvokeAsync(link.Page);
         }
     }

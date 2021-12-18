@@ -9,6 +9,6 @@ namespace illegible.Client.Pages.BlogPost
     public partial class PostTable
     {
         [Parameter]
-        public List<Entity.BlogEntity.Post.BlogPost> BlogPosts { get; set; }
+        public List<Entity.BlogEntity.Post.BlogPost> BlogPostList { get; set; }
     }
 }

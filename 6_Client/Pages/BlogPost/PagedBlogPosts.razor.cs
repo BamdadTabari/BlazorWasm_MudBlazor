@@ -15,15 +15,24 @@ namespace illegible.Client.Pages.BlogPost
         //    var bb = await Http.GetAsync("BlogPost/GetPagedBlogPosts");
         //    var aa = bb;
         //}
-        public List<Entity.BlogEntity.Post.BlogPost> blogPosts { get; set; } = new List<Entity.BlogEntity.Post.BlogPost>();
-        public MetaData metaData { get; set; } = new illegible.Kernel.RequestFeatures.MetaData();
+        public List<Entity.BlogEntity.Post.BlogPost> BlogPosts { get; set; } = new List<Entity.BlogEntity.Post.BlogPost>();
+        public MetaData MetaData { get; set; } = new MetaData();
         private PagingParameters _pagingParameters = new PagingParameters();
       
         protected async override Task OnInitializedAsync()
         {
-            var pagingResponse = await _httpRequestHandler.GetPagedData(_pagingParameters , "BlogPost/GetPagedBlogPosts");
-            blogPosts = pagingResponse.Items;
-            metaData = pagingResponse.MetaData;
+            await GetPosts();
+        }
+        private async Task SelectedPage(int page)
+        {
+            _pagingParameters.PageNumber = page;
+            await GetPosts();
+        }
+        private async Task GetPosts()
+        {
+            var pagingResponse = await _httpRequestHandler.GetPagedData(_pagingParameters, "BlogPost/GetPagedBlogPosts");
+            BlogPosts = pagingResponse.Items;
+            MetaData = pagingResponse.MetaData;
         }
     }
 }
