@@ -10,11 +10,6 @@ namespace illegible.Client.Pages.BlogPost
 {
     public partial class PagedBlogPosts
     {
-        //protected override async Task OnInitializedAsync()
-        //{
-        //    var bb = await Http.GetAsync("BlogPost/GetPagedBlogPosts");
-        //    var aa = bb;
-        //}
         public List<Entity.BlogEntity.Post.BlogPost> BlogPosts { get; set; } = new List<Entity.BlogEntity.Post.BlogPost>();
         public MetaData MetaData { get; set; } = new MetaData();
         private PagingParameters _pagingParameters = new PagingParameters();
@@ -33,6 +28,13 @@ namespace illegible.Client.Pages.BlogPost
             var pagingResponse = await _httpRequestHandler.GetPagedData(_pagingParameters, "BlogPost/GetPagedBlogPosts");
             BlogPosts = pagingResponse.Items;
             MetaData = pagingResponse.MetaData;
+        }
+        private async Task SearchChanged(string searchTerm)
+        {
+            Console.WriteLine(searchTerm);
+            _pagingParameters.PageNumber = 1;
+            _pagingParameters.SearchTerm = searchTerm;
+            await GetPosts();
         }
     }
 }

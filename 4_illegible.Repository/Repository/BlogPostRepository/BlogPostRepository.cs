@@ -5,6 +5,7 @@ using illegible.Kernel.RequestFeatures;
 using illegible.Repository.IRepository.BlogPostTablesIRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace illegible.Repository.Repository.BlogPostRepository
@@ -42,11 +43,20 @@ namespace illegible.Repository.Repository.BlogPostRepository
             return _blogPost.FirstOrDefaultAsync(b => b.Id == id);
         }
 
-
         public async Task<PagedList<BlogPost>> GetPagingPost(PagingParameters pagingParameters)
         {
-            var posts = await _blogPost.ToListAsync();
+            var posts = await _blogPost.Search(pagingParameters.SearchTerm).ToListAsync();
             return PagedList<BlogPost>.ToPagedList(posts, pagingParameters.PageNumber, pagingParameters.PageSize);
+        }
+    }
+    public static class BlogPostRepositoryExtensions
+    {
+        public static IQueryable<BlogPost> Search(this IQueryable<BlogPost> blogPost, string searchTearm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTearm))
+                return blogPost;
+            var lowerCaseSearchTerm = searchTearm.Trim().ToLower();
+            return blogPost.Where(p => p.Title.ToLower().Contains(lowerCaseSearchTerm));
         }
     }
 }
