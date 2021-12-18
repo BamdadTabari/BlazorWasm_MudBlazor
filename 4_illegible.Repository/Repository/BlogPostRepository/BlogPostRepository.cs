@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace illegible.Repository.Repository.BlogPostRepository
 {
     public class BlogPostRepository : IBlogPostRepository
