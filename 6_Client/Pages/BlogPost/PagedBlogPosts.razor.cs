@@ -14,6 +14,12 @@ namespace illegible.Client.Pages.BlogPost
         public MetaData MetaData { get; set; } = new MetaData();
         private PagingParameters _pagingParameters = new PagingParameters();
       
+        private async Task GetPosts()
+        {
+            var pagingResponse = await _httpRequestHandler.GetPagedData(_pagingParameters, "BlogPost/GetPagedBlogPosts");
+            BlogPosts = pagingResponse.Items;
+            MetaData = pagingResponse.MetaData;
+        }
         protected async override Task OnInitializedAsync()
         {
             await GetPosts();
@@ -23,17 +29,17 @@ namespace illegible.Client.Pages.BlogPost
             _pagingParameters.PageNumber = page;
             await GetPosts();
         }
-        private async Task GetPosts()
-        {
-            var pagingResponse = await _httpRequestHandler.GetPagedData(_pagingParameters, "BlogPost/GetPagedBlogPosts");
-            BlogPosts = pagingResponse.Items;
-            MetaData = pagingResponse.MetaData;
-        }
         private async Task SearchChanged(string searchTerm)
         {
             Console.WriteLine(searchTerm);
             _pagingParameters.PageNumber = 1;
             _pagingParameters.SearchTerm = searchTerm;
+            await GetPosts();
+        }
+        private async Task SortChanged(string orderBy)
+        {
+            Console.WriteLine(orderBy);
+            _pagingParameters.OrderBy = orderBy;
             await GetPosts();
         }
     }
