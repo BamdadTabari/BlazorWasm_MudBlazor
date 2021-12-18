@@ -1,2 +1,2 @@
 # illegibleBlazorBlog
-sample .net core  blazor project with web api
+manual setup and personalizition of illegible blazor blog
