@@ -7,6 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.Text;
+using System.Linq.Dynamic.Core;
+using System;
+
 namespace illegible.Repository.Repository.BlogPostRepository
 {
     public class BlogPostRepository : IBlogPostRepository
@@ -44,7 +49,7 @@ namespace illegible.Repository.Repository.BlogPostRepository
 
         public async Task<PagedList<BlogPost>> GetPagingPost(PagingParameters pagingParameters)
         {
-            var posts = await _blogPost.Search(pagingParameters.SearchTerm).ToListAsync();
+            var posts = await _blogPost.Search(pagingParameters.SearchTerm).Sort(pagingParameters.OrderBy).ToListAsync();
             return PagedList<BlogPost>.ToPagedList(posts, pagingParameters.PageNumber, pagingParameters.PageSize);
         }
     }
@@ -56,6 +61,38 @@ namespace illegible.Repository.Repository.BlogPostRepository
                 return blogPost;
             var lowerCaseSearchTerm = searchTearm.Trim().ToLower();
             return blogPost.Where(p => p.Title.ToLower().Contains(lowerCaseSearchTerm));
+        }
+
+        public static IQueryable<BlogPost> Sort(this IQueryable<BlogPost> blogPosts, string orderByQueryString)
+        {
+            if (string.IsNullOrWhiteSpace(orderByQueryString))
+                return blogPosts.OrderBy(e => e.Title);
+
+            var orderParams = orderByQueryString.Trim().Split(',');
+            var propertyInfos = typeof(BlogPost).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var orderQueryBuilder = new StringBuilder();
+
+            foreach (var param in orderParams)
+            {
+                if (string.IsNullOrWhiteSpace(param))
+                    continue;
+
+                var propertyFromQueryName = param.Split(" ")[0];
+                var objectProperty = propertyInfos.FirstOrDefault(pi => pi.Name
+                .Equals(propertyFromQueryName, StringComparison.InvariantCultureIgnoreCase));
+
+                if (objectProperty == null)
+                    continue;
+
+                var direction = param.EndsWith(" desc") ? "descending" : "ascending";
+                orderQueryBuilder.Append($"{objectProperty.Name} {direction}, ");
+            }
+
+            var orderQuery = orderQueryBuilder.ToString().TrimEnd(',', ' ');
+            if (string.IsNullOrWhiteSpace(orderQuery))
+                return blogPosts.OrderBy(e => e.Title);
+
+            return blogPosts.OrderBy(orderQuery);
         }
     }
 }
