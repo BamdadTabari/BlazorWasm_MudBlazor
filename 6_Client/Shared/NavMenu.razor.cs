@@ -36,6 +36,12 @@ namespace illegible.Client.Shared
                 Icon = "grid",
                 Url = "/addBlogPost"
             },
+             new DrawerItem
+            {
+                Text = "createPost",
+                Icon = "star",
+                Url = "/createPost"
+            },
             //new DrawerItem { Separator = true},
             new DrawerItem
             {
@@ -63,7 +69,8 @@ namespace illegible.Client.Shared
                 Text = "logout",
                 Icon = "logout",
                 Url = "/logout"
-            }
+            },
+            
             };
 
         #endregion

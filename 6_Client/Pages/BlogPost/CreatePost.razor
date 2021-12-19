@@ -1,4 +1,5 @@
 ﻿@page "/createPost"
+<SuccessNotification @ref="_notification" />
 <EditForm Model="BlogPostData" OnSubmit="Create" class="card card-body bg-light mt-5">
     <DataAnnotationsValidator />
     <div class="form-group row">
