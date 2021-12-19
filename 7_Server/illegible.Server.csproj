@@ -30,5 +30,9 @@
     <ProjectReference Include="..\6_Client\illegible.Client.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="StaticFiles\Images\" />
+  </ItemGroup>
+
 
 </Project>

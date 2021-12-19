@@ -14,5 +14,6 @@ namespace illegible.Client.Pages.BlogPost
             await _httpRequestHandler.PostAsHttpJsonAsync(BlogPostData, "BlogPost/AddBlogPost");
             _notification.Show();
         }
+        private void AssignImageUrl(string imgUrl) => BlogPostData.ImageUrl = imgUrl;
     }
 }

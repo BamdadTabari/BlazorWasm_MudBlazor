@@ -18,8 +18,4 @@
     <ProjectReference Include="..\5_Shared\illegible.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\StaticFiles\Images\" />
-  </ItemGroup>
-
 </Project>

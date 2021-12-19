@@ -29,5 +29,6 @@ namespace illegible.Shared.SharedDto.BlogPost
         [Url]
         public string PostAttachedLinkUrl { get; set; }
         public string PostAttachedLinkUrlSubject { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
