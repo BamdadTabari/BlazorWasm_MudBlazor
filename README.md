@@ -1,2 +1,2 @@
 # illegibleBlazorBlog
-manual setup and personalizition of illegible blazor blog
+complex dirty and onOrganized Code and Tests Of new things and personalizition of illegible blazor blog
