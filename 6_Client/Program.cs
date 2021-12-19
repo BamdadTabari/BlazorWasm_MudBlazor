@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Tewr.Blazor.FileReader;
 
 namespace illegible.Client
 {
@@ -37,7 +38,7 @@ namespace illegible.Client
 
             // register the Telerik services
             builder.Services.AddTelerikBlazor();
-
+            builder.Services.AddFileReaderService(o => o.UseWasmSharedBuffer = true);
 
             await builder.Build().RunAsync();
         }

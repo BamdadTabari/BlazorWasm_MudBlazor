@@ -11,10 +11,15 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
     <PackageReference Include="Telerik.UI.for.Blazor" Version="2.27.0" />
+    <PackageReference Include="Tewr.Blazor.FileReader" Version="3.3.0.21348" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\5_Shared\illegible.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\StaticFiles\Images\" />
   </ItemGroup>
 
 </Project>

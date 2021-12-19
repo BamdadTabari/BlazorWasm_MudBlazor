@@ -6,6 +6,7 @@ using illegible.Shared.SharedServices.IService;
 using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -88,5 +89,19 @@ namespace illegible.Shared.SharedServices.Service
             return pagingResponse;
         }
 
+        public async Task<string> UploadStaticImage(MultipartFormDataContent content, string uriAddress)
+        {
+            var postResult = await _httpClient.PostAsync(uriAddress, content);
+            var postContent = await postResult.Content.ReadAsStringAsync();
+            if (!postResult.IsSuccessStatusCode)
+            {
+                throw new ApplicationException(postContent);
+            }
+            else
+            {
+                var imgUrl = Path.Combine(_httpClient.BaseAddress.ToString(), postContent);
+                return imgUrl;
+            }
+        }
     }
 }
