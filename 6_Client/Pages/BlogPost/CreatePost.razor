@@ -1,0 +1,44 @@
+﻿@page "/createPost"
+<EditForm Model="BlogPostData" OnSubmit="Create" class="card card-body bg-light mt-5">
+    <DataAnnotationsValidator />
+    <div class="form-group row">
+        <label for="title" class="col-md-2 col-form-label">Title:</label>
+        <div class="col-md-10">
+            <InputText id="title" class="form-control" @bind-Value="BlogPostData.Title" />
+            <ValidationMessage For="@(() => BlogPostData.Title)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="postContext" class="col-md-2 col-form-label">PostContext:</label>
+        <div class="col-md-10">
+            <InputText id="postContext" class="form-control" @bind-Value="BlogPostData.PostContext" />
+            <ValidationMessage For="@(() => BlogPostData.PostContext)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="summary" class="col-md-2 col-form-label">Summary:</label>
+        <div class="col-md-10">
+            <InputText id="summary" class="form-control" @bind-Value="BlogPostData.Summary" />
+            <ValidationMessage For="@(() => BlogPostData.Summary)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="postImageUrl" class="col-md-2 col-form-label">PostImageUrl:</label>
+        <div class="col-md-10">
+            <InputText id="postImageUrl" class="form-control" @bind-Value="BlogPostData.PostImageUrl" />
+            <ValidationMessage For="@(() => BlogPostData.PostImageUrl)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="postVideoUrl" class="col-md-2 col-form-label">PostVideoUrl:</label>
+        <div class="col-md-10">
+            <InputText id="postVideoUrl" class="form-control" @bind-Value="BlogPostData.PostVideoUrl" />
+            <ValidationMessage For="@(() => BlogPostData.PostVideoUrl)" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-success">Create</button>
+        </div>
+    </div>
+</EditForm>

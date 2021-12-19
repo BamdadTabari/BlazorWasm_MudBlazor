@@ -25,12 +25,13 @@ namespace illegible.Server.Controllers.BlogPostAPI
             _userManager = userManager;
         }
 
-        [HttpPost("AddBlogPost"),AutoValidateAntiforgeryToken]
-        public async Task AddBlogPost([FromBody] BlogPostDto blogPostDto)
+        [HttpPost("AddBlogPost")]
+        public async Task<IActionResult> AddBlogPost([FromBody] BlogPostDto blogPostDto)
         {
             blogPostDto.Author = _userManager.GetUserName(User);
             var blogPost = _mapper.Map<Entity.BlogEntity.Post.BlogPost>(blogPostDto);
             await _blogPostRepository.AddBlogPostAsync(blogPost);
+            return Created("", blogPost);
         }
 
         [HttpGet("GetAllBlogPost")]

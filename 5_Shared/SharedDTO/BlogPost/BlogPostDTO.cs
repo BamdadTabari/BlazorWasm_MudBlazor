@@ -13,7 +13,6 @@ namespace illegible.Shared.SharedDto.BlogPost
         public string Title { get; set; }
         public string Author { get; set; }
         [Required]
-        
         public string Summary { get; set; }
         public DateTime WriteTime { get; set; } 
         
@@ -25,7 +24,6 @@ namespace illegible.Shared.SharedDto.BlogPost
 
         [Url]
         public string PostVideoUrl { get; set; }
-
         public AttachedLinkType AttachedLinkTypeEnum { get; set; }
 
         [Url]
